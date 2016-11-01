@@ -3,6 +3,7 @@ var Application = require('./Application');
 var ReactDOM = require('react-dom');
 var React = require('react');
 var Globals = require('./Globals');
+var ForecastLoaderHelper = require('./helpers/ForecastLoaderHelper');
 require('gsap');
 
 
@@ -42,7 +43,6 @@ var Index = function(){
 		queue.on("progress", handleQueueProgress);
 		queue.on("error", handleFileError);
 		queue.on("complete", handleQueueComplete);
-		queue.loadFile({src : "https://api.darksky.net/forecast/b5edc2d8101cdcbf9eaf23df9e2afa7d/36.8951441,-76.3256273", type : createjs.AbstractLoader.JSON, id : "norfolkForecast"});
 		for(var i = 1; i <= 5; i++){
 			queue.loadFile({src : "public/images/intro/bg"+i+".jpg", type:createjs.AbstractLoader.IMAGE, id : "imageintro"+i, index : i});
 		}		
@@ -56,8 +56,25 @@ var Index = function(){
 		ReactDOM.render((<Application/>), $("#app")[0]);
 	}
 
-	function handleQueueComplete(evt){
+	function loadForecastData(){
+		ForecastLoaderHelper.loadNorfolkData().then(function(evt){
+			setQueuePercentage(1);
+		});
+	}
 
+	function setQueuePercentage(p){
+		TweenMax.to(preloaderPercentage, 1, {scaleX : p, ease : Quint.easeOut, onComplete:((p == 1) ? endLoading : null)});
+	}
+
+	/**
+	* EVENTS
+	**/
+	function handleForecastLoaded(evt){
+
+	}
+
+	function handleQueueComplete(evt){
+		loadForecastData();
 	}
 
 	function handleFileError(evt){
@@ -65,16 +82,12 @@ var Index = function(){
 	}
 
 	function handleQueueProgress(evt){
-		TweenMax.to(preloaderPercentage, 1, {scaleX : evt.progress, ease : Quint.easeOut, onComplete:((evt.progress == 1) ? endLoading : null)});
+		setQueuePercentage(evt.progress * 0.8);
+		
 	}
 
 	function handleFileComplete(evt){
-		if(evt.item.id == "norfolkForecast"){
-			Globals.NORFOLK_LAST_DATA = evt.result;
-			console.log(evt.result);
-		}else{
-			Globals.ARR_INTRO_BACKGROUNDS[evt.item.index] = evt.result.src;
-		}
+		Globals.ARR_INTRO_BACKGROUNDS[evt.item.index] = evt.result.src;
 	} 
 
 	return {
