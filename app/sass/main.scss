@@ -1,1 +1,62 @@
 @import "base/normalize.scss";
+@import "base/fonts.scss";
+
+
+html,body {
+  position : relative;
+  display : block;
+  float : left;
+  width : 100%;
+  height : 100%;
+
+  background: #000000;
+}
+
+#app {
+  display : block;
+  float : left;
+  position : relative;
+
+  width : 100%;
+  height : 100%;
+
+  div.wrapper {
+    position : relative;
+    display : block;
+    float : left;
+    width : 100%;
+    height : 100%;
+
+    section {
+      position : relative;
+      display : block;
+      float : left;
+      width : 100%;
+      min-height : 100%;
+    }
+  }
+}
+
+
+#preloader-bar {
+  position : fixed;
+  z-index : 999;
+  display : block;
+  float : left;
+  width : 100%;
+  height : 15px;
+  transform-origin: top left;
+  background : rgba(255,255,255,0.2);
+
+  div.percentage {
+    width : 100%;
+    height : 100%;
+    position : fixed;
+    transform-origin: top left;
+    background: rgba(255,255,255,0.1);
+  }
+}
+
+
+
+@import "screens/intro.scss";

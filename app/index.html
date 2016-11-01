@@ -14,6 +14,7 @@
         <meta http-equiv="pragma" content="no-cache" />
         <title>ExpressJS</title>
         <link rel="shortcut icon" href="public/images/favicon.ico" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0001,minimum-scale=1.0001,maximum-scale=1.0001,user-scalable=no,shrink-to-fit=no">
         <meta content="--" name="author" />
         <!-- @ifdef DEBUG -->
         <base href="http://localhost:3000/"/>
@@ -24,16 +25,42 @@
         <!-- @if NODE_ENV='development' -->
         <base href="http://localhost:3000/"/>
         <!-- @endif -->
-        <meta name="fragment" content="!">
-        <meta name="description" content="--">
-        <meta name="og:description" content="--">
-        <meta name="og:title" content="--">
-        <meta content="Luiz Sordi" property="og:author" />
+        <meta property="og:site_name" content="Grow - A Digital Agency for Pioneering Brands"/>
+        <meta property="og:title" content="Grow - A Digital Agency for Pioneering Brands" />
+        <meta property="og:url" content="http://thisisgrow.com/"/>
+        <meta property="og:description" content="We combine strategy, creative, and technology under one roof to help modern brands engage their audiences in new and unexpected ways." />
+        <meta property="og:image" content="http://thisisgrow.com/Meta-Share-2.png" />
+
+        <meta itemprop="name" content="Grow - A Digital Agency for Pioneering Brands">
+        <meta itemprop="description" content="We combine strategy, creative, and technology under one roof to help modern brands engage their audiences in new and unexpected ways.">
+        <meta itemprop="image" content="http://thisisgrow.com/Meta-Share-2.png">
+
+        <meta name="description" content="We combine strategy, creative, and technology under one roof to help modern brands engage their audiences in new and unexpected ways.">
+
+        <meta name="twitter:site" content="Grow - A Digital Agency for Pioneering Brands">
+        <meta name="twitter:title" content="Grow - A Digital Agency for Pioneering Brands">
+        <meta name="twitter:description" content="We combine strategy, creative, and technology under one roof to help modern brands engage their audiences in new and unexpected ways.">
+        <meta name="twitter:url" content="http://thisisgrow.com/">
+        <meta name="twitter:image" content="http://thisisgrow.com/Meta-Share-2.png">
+        <meta name="twitter:card" content="summary_large_image">
+
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://thisisgrow.com/imgs/favicons/favicon-152.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://thisisgrow.com/imgs/favicons/favicon-144.png">
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="http://thisisgrow.com/imgs/favicons/favicon-120.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://thisisgrow.com/imgs/favicons/favicon-72.png">
+        <link rel="apple-touch-icon-precomposed" href="http://thisisgrow.com/imgs/favicons/favicon-57.png">
+        <link rel="icon" href="http://thisisgrow.com/imgs/favicons/favicon-32.png" sizes="32x32">
+
+
         <link rel="stylesheet" href="public/styles/styles.css">
     </head>
     <body>
-        <div id="app">
+        <p style="font-size : 0px; opacity:0;">font loading</p>
+        <div id="app" style="display:none;">
           
+        </div>
+        <div id="preloader-bar" style="display:none;">
+            <div class="percentage"></div>
         </div>
         <script type="text/javascript" src="public/scripts/scripts.js"></script>
     </body>

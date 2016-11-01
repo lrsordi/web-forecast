@@ -5,7 +5,7 @@ var React = require('react');
 var Main = React.createClass({
   render : function(){
     return (
-      <div className='general-container'>
+      <div className='wrapper'>
         <header></header>
         <section>
           {this.props.children}

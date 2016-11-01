@@ -7,6 +7,13 @@ var IntroScreen = require('./screens/IntroScreen');
 var ForecastScreen = require('./screens/ForecastScreen');
 
 
+
+require('./vendors/preloadjs-0.6.2.min');
+require('./vendors/SplitText.min');
+
+
+
+
 var Application = React.createClass({
 
 

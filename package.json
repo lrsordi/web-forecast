@@ -30,6 +30,7 @@
     "backbone-route-control": "^0.1.0",
     "browserify": "^13.1.0",
     "browserify-resolutions": "^1.1.0",
+    "classnames": "^2.2.5",
     "debug": "^2.2.0",
     "express": "^4.14.0",
     "gsap": "^1.19.0",

@@ -41,6 +41,9 @@ section,
 summary {
   display: block; }
 
+* {
+  font-smoothing: antialiased; }
+
 /**
  * 1. Correct `inline-block` display not defined in IE 8/9.
  * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
@@ -413,3 +416,172 @@ a:active {
 
 strong {
   font-weight: bold; }
+
+@font-face {
+  font-family: ProximaNova-Regular;
+  src: url(../fonts/proxima_regular.eot);
+  src: url(../fonts/proxima_regular.eot?#iefix) format("embedded-opentype"), url(../fonts/proxima_regular.woff) format("woff"), url(../fonts/proxima_regular.ttf) format("truetype"); }
+
+@font-face {
+  font-family: ProximaNova-Light;
+  src: url(../fonts/proxima_light.eot);
+  src: url(../fonts/proxima_light.eot?#iefix) format("embedded-opentype"), url(../fonts/proxima_light.woff) format("woff"), url(../fonts/proxima_light.ttf) format("truetype"); }
+
+@font-face {
+  font-family: ProximaNova-Bold;
+  src: url(../fonts/proxima_bold.eot);
+  src: url(../fonts/proxima_bold.eot?#iefix) format("embedded-opentype"), url(../fonts/proxima_bold.woff) format("woff"), url(../fonts/proxima_bold.ttf) format("truetype"); }
+
+@font-face {
+  font-family: Sanchez-Regular;
+  src: url(../fonts/sanchez_regular.eot);
+  src: url(../fonts/sanchez_regular.eot?#iefix) format("embedded-opentype"), url(../fonts/sanchez_regular.woff) format("woff"), url(../fonts/sanchez_regular.ttf) format("truetype"); }
+
+@font-face {
+  font-family: Sanchez-Light;
+  src: url(../fonts/sanchez_light.eot);
+  src: url(../fonts/sanchez_light.eot?#iefix) format("embedded-opentype"), url(../fonts/sanchez_light.woff) format("woff"), url(../fonts/sanchez_light.ttf) format("truetype"); }
+
+@font-face {
+  font-family: Sanchez-Bold;
+  src: url(../fonts/sanchez_bold.eot);
+  src: url(../fonts/sanchez_bold.eot?#iefix) format("embedded-opentype"), url(../fonts/sanchez_bold.woff) format("woff"), url(../fonts/sanchez_bold.ttf) format("truetype"); }
+
+html, body {
+  position: relative;
+  display: block;
+  float: left;
+  width: 100%;
+  height: 100%;
+  background: #000000; }
+
+#app {
+  display: block;
+  float: left;
+  position: relative;
+  width: 100%;
+  height: 100%; }
+  #app div.wrapper {
+    position: relative;
+    display: block;
+    float: left;
+    width: 100%;
+    height: 100%; }
+    #app div.wrapper section {
+      position: relative;
+      display: block;
+      float: left;
+      width: 100%;
+      min-height: 100%; }
+
+#preloader-bar {
+  position: fixed;
+  z-index: 999;
+  display: block;
+  float: left;
+  width: 100%;
+  height: 15px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  background: rgba(255, 255, 255, 0.2); }
+  #preloader-bar div.percentage {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    -webkit-transform-origin: top left;
+            transform-origin: top left;
+    background: rgba(255, 255, 255, 0.1); }
+
+#intro-screen {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: block;
+  float: left;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  -webkit-transition: background 1s linear;
+  transition: background 1s linear; }
+  #intro-screen div.black-deg {
+    display: block;
+    float: left;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); }
+  #intro-screen div.center-content {
+    display: block;
+    float: left;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1000px;
+    height: 500px;
+    margin-left: -500px;
+    margin-top: -250px; }
+    #intro-screen div.center-content div.logo-container {
+      width: 106px;
+      height: 106px;
+      display: block;
+      float: left;
+      position: absolute;
+      margin-top: 50px;
+      left: 50%;
+      margin-left: -53px; }
+      #intro-screen div.center-content div.logo-container h1 {
+        display: block;
+        float: left;
+        position: absolute;
+        width: 106px;
+        height: 106px;
+        font-size: 0px;
+        background: url("../images/white_anim_logo.png") 0 0 no-repeat;
+        border-radius: 53px;
+        -webkit-transition: opacity 1s linear;
+        transition: opacity 1s linear; }
+    #intro-screen div.center-content h2 {
+      font-family: Sanchez-Regular,sans-serif;
+      font-size: 50px;
+      width: 100%;
+      display: block;
+      float: left;
+      width: 100%;
+      text-align: center;
+      margin-top: 200px;
+      color: #ffffff;
+      text-shadow: 1px 1px rgba(0, 0, 0, 0.5); }
+    #intro-screen div.center-content p {
+      font-family: ProximaNova-Light,sans-serif;
+      font-size: 16px;
+      letter-spacing: 1px;
+      text-rendering: optimizeLegibility;
+      width: 50%;
+      margin-left: 25%;
+      display: block;
+      float: left;
+      text-align: center;
+      margin-top: 30px;
+      color: #ffffff; }
+    #intro-screen div.center-content a.proceed-btn {
+      position: relative;
+      display: block;
+      float: left;
+      clear: both;
+      left: 50%;
+      padding: 15px 0px;
+      background: #ffffff;
+      margin-top: 60px;
+      width: 150px;
+      text-align: center;
+      margin-left: -75px;
+      border-radius: 40px;
+      color: #393531;
+      font-family: ProximaNova-Bold,sans-serif;
+      -webkit-transition: background 0.3s linear, color 0.3s linear, box-shadow 0.3s linear;
+      transition: background 0.3s linear, color 0.3s linear, box-shadow 0.3s linear;
+      box-shadow: 0px 0px transparent; }
+      #intro-screen div.center-content a.proceed-btn:hover {
+        background: #393531;
+        color: #ffffff;
+        box-shadow: 3px 3px rgba(0, 0, 0, 0.2); }
