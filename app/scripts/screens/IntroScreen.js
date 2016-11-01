@@ -20,6 +20,11 @@ var IntroScreen = React.createClass({
 			background : Math.floor(Math.random() * 5) + 1, 
 		};
 	},
+
+	componentWillLeave : function(){
+		alert("WILL LEAVE");
+	},
+	
 	componentDidMount: function() {
 		// entrance animation
 		this.$el = ReactDOM.findDOMNode(this.refs["intro-screen"]);

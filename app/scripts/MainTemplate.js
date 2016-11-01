@@ -1,5 +1,5 @@
 var React = require('react');
-
+var PageTransition = require('react-router-page-transition');
 
 
 var Main = React.createClass({

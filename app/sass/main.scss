@@ -59,4 +59,24 @@ html,body {
 
 
 
+.screen-changes-enter {
+  opacity: 0.01;
+  transition: opacity .5s ease-in;
+}
+
+.screen-changes-enter.screen-changes-enter-active {
+  opacity: 1;
+}
+
+.screen-changes-leave {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.screen-changes-leave.screen-changes-leave-active {
+  opacity: 0;
+}
+
+
+
 @import "screens/intro.scss";
