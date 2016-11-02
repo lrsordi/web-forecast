@@ -92,14 +92,24 @@ var ForecastScreen = React.createClass({
     }
   },  
 
+  onOpenCard : function(source,index){
+    if(source == this.refs.norfolkList){
+      if(this.refs.comparingList){
+        this.refs.comparingList.openCard(index,false);
+      }
+    }else{
+      this.refs.norfolkList.openCard(index,false);
+    }
+  },
+
 
 
   render : function(){
     return (
     	<div className="section-container">
-      	  <WeatherListComponent data={this.state.norfolkData} title="Norfolk, VA" ref="norfolkList" onChangePos={this.onChangePos} onAlignToIndex={this.onAlignToIndex} delayed={true} retracted={this.state.comparing && (this.state.comparingData != null)} />
+      	  <WeatherListComponent data={this.state.norfolkData} title="Norfolk, VA" ref="norfolkList" onOpenCard={this.onOpenCard} onChangePos={this.onChangePos} onAlignToIndex={this.onAlignToIndex} delayed={true} retracted={this.state.comparing && (this.state.comparingData != null)} />
         {this.state.comparing && this.state.comparingData ?
-          <WeatherListComponent data={this.state.comparingData} title={this.state.comparingCityName} onChangePos={this.onChangePos} onAlignToIndex={this.onAlignToIndex} ref="comparingList" delayed={false} />
+          <WeatherListComponent data={this.state.comparingData} title={this.state.comparingCityName} onOpenCard={this.onOpenCard} onChangePos={this.onChangePos} onAlignToIndex={this.onAlignToIndex} ref="comparingList" delayed={false} />
         : null
         }
 

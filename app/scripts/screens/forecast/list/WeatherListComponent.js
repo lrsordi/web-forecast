@@ -123,13 +123,17 @@ var WeatherListComponent = React.createClass({
 		});
 	},
 
-	openCard : function(index){
+	openCard : function(index, doCall){
 		var card = this.refs["card"+index];
 		if(!card.props.hourlyEnabled){
 			return;
 		}
 
 		card.toggleOpen();
+
+		if(doCall){
+			this.props.onOpenCard(this,index);
+		}
 	},
 
 	render: function() {
@@ -181,7 +185,7 @@ var WeatherListComponent = React.createClass({
 	    		var cardIndex = $(e.toElement).parents("div.card-item").index();
 	    		if(self.state.itemAligned == cardIndex)
 	    		{
-	    			this.openCard(cardIndex);
+	    			this.openCard(cardIndex,true);
 	    		}else{
 	    			this.alignToIndex(cardIndex,true, true);
 	    		}
