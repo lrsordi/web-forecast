@@ -752,10 +752,10 @@ html, body {
         display: block;
         float: left;
         position: relative;
-        left: 50%;
         height: 60vh;
         min-width: 100vw;
         margin-top: 5vh;
+        cursor: pointer;
         cursor: -webkit-grab;
         cursor: grab; }
         #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item {
@@ -775,8 +775,8 @@ html, body {
           border: 2.5px solid rgba(255, 255, 255, 0.35);
           margin-left: 20px;
           overflow: hidden;
-          -webkit-transform: perspective(1500);
-                  transform: perspective(1500);
+          -webkit-transform: perspective(1500) translate3d(0px, 0px, 0.1px);
+                  transform: perspective(1500) translate3d(0px, 0px, 0.1px);
           box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2); }
           #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item:first-child {
             margin-left: 0px; }
@@ -832,3 +832,6 @@ html, body {
                 #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item div.line-temperature div.column-degrees strong img {
                   width: 40px;
                   margin-right: 20px; }
+        #forecast-wrapper div.section-container div.weather-list div.cards-container.grabbing {
+          cursor: -webkit-grabbing !important;
+          cursor: grabbing !important; }

@@ -46,13 +46,17 @@
 	  		display : block;
 	  		float : left;
 	  		position : relative;
-	  		left : 50%;
 	  		height : 60vh;
 	  		min-width : 100vw;
 	  		margin-top : 5vh;
+	  		cursor : pointer;
 			cursor : grab;
-			
+
 	  		@import "card.scss";
+
+	  		&.grabbing {
+	  			cursor : grabbing !important;
+	  		}
 	  	}
 	  }
   }

@@ -6,6 +6,7 @@ div.card-item {
 	width : 400px;	
 	border-radius : 20px;
 	padding : 30px;
+
 	background: -moz-linear-gradient(bottom right, rgba(0,0,0,0.5) 20%, rgba(255,255,255,0.62) 100%); /* FF3.6-15 */
 	background: -webkit-linear-gradient(bottom right, rgba(0,0,0,0.5) 20%,rgba(255,255,255,0.62) 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to bottom right, rgba(0,0,0,0.5) 20%,rgba(255,255,255,0.62) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -14,7 +15,7 @@ div.card-item {
 	margin-left : 20px;		  		
 	overflow : hidden;
 
-	transform :  perspective(1500);
+	transform :  perspective(1500) translate3d(0px,0px,0.1px);
 	box-shadow : 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
 	&:first-child{margin-left : 0px;}
 
