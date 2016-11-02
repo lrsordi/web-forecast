@@ -8,7 +8,8 @@ var ForecastScreen = React.createClass({
 	getInitialState: function() {
 		return {
 			comparing:false,
-			norfolkData : this.props.norfolkData
+			norfolkData : this.props.norfolkData,
+      
 		};
 	},
 
@@ -23,7 +24,11 @@ var ForecastScreen = React.createClass({
   render : function(){
     return (
     	<div className="section-container">
-      	<WeatherListComponent data={this.state.norfolkData} title="Norfolk, VA" retracted={this.state.comparing} />
+      	  <WeatherListComponent data={this.state.norfolkData} title="Norfolk, VA" ref="norfolkList" retracted={this.state.comparing} />
+        {this.state.comparing ?
+          <WeatherListComponent data={this.state.norfolkData} title="Norfolk, VA" ref="norfolkList" retracted={this.state.comparing} />
+        : null
+        }
       </div>
     )
   }

@@ -1,4 +1,5 @@
 var React = require('react');
+var DateHelper = require('../../../helpers/DateHelper');
 var ReactDOM = require('react-dom');
 
 var FooterComponent = React.createClass({
@@ -7,15 +8,16 @@ var FooterComponent = React.createClass({
 	getInitialState: function() {
 		return {
 			lastUpdated:this.props.lastUpdated,
-			loading : this.props.loading
+			loading : this.props.loading,
+			zipCode : ""
 		};
 	},
 
 	componentDidMount: function() {
 		this.$el = ReactDOM.findDOMNode(this);
 
-		TweenMax.fromTo(ReactDOM.findDOMNode(this.refs.lastupdated), 1, {opacity : 0, y : 30}, {opacity : 1, y : 0, ease : Quint.easeInOut});
-   		TweenMax.fromTo(ReactDOM.findDOMNode(this.refs.reloadbtn), 1, {y:-10, opacity : 0},{y : 0, opacity : 1, ease : Quint.easeInOut});
+		TweenMax.fromTo(ReactDOM.findDOMNode(this.refs.lastupdated), 1, {opacity : 0}, {opacity : 1, y : 0, ease : Quint.easeInOut});
+   		TweenMax.fromTo(ReactDOM.findDOMNode(this.refs.reloadbtn), 1, {opacity : 0},{y : 0, opacity : 1, ease : Quint.easeInOut});
 	},
 
 	componentWillReceiveProps: function(nextProps) {
@@ -25,18 +27,10 @@ var FooterComponent = React.createClass({
 		});
 	},
 
-	formatDate : function(date){
-		var str = ("0"+(date.getMonth()+1)).substr(-2) + "/" + ("0"+date.getDate()).substr(-2) + "/" + date.getFullYear();
+	performZipSearch : function(){
 
-		var hours = date.getHours();
-		  var minutes = date.getMinutes();
-		  var ampm = hours >= 12 ? 'pm' : 'am';
-		  hours = hours % 12;
-		  hours = hours ? hours : 12; // the hour '0' should be '12'
-		  minutes = minutes < 10 ? '0'+minutes : minutes;
-		  var strTime = hours + ':' + minutes + ' ' + ampm;
-		return str + " " + strTime;
 	},
+
 
 	requestUpdate : function(){
 		if(this.state.loading) return;
@@ -51,7 +45,10 @@ var FooterComponent = React.createClass({
 				<div className="footer-content" ref="lastupdated">
 					<div className="last-updated">
 						<strong>Last updated: </strong>
-						{(this.state.loading) ? "Updating..." : this.formatDate(this.state.lastUpdated)}
+						{(this.state.loading) ? "Updating..." : DateHelper.getFooterDate(this.state.lastUpdated)}
+					</div>
+					<div className="add-compare">
+						<input type="text" ref="input" placeholder="Insert your zipcode here..." /><a className="search" onClick={this.performZipSearch}><img src="public/images/search-icon.svg"/></a>
 					</div>
 					<a className="reload" ref="reloadbtn" onClick={this.requestUpdate}><img src="public/images/reload.svg"/>{(this.state.loading) ? "Updating..." : "reload now"}</a>
 				</div>

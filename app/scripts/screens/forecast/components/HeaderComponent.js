@@ -15,8 +15,8 @@ var HeaderComponent = React.createClass({
     this.logoSpriteWhite = new SpriteSheet();
     this.logoSpriteWhite.build($(this.$elLogo), 20, 28, 106, 106, 'public/images/white_anim_logo.png');
 
-    TweenMax.fromTo(ReactDOM.findDOMNode(this.refs.backbtn), 1, {opacity : 0, y : -30}, {opacity : 1, y : 0, ease : Quint.easeInOut});
-    TweenMax.fromTo(this.$elLogo, 1, {y:-10, opacity : 0},{y : 0, opacity : 1, ease : Quint.easeInOut, onComplete:this.logoSpriteWhite.start});
+    TweenMax.fromTo(ReactDOM.findDOMNode(this.refs.backbtn), 1, {opacity : 0}, {opacity : 1, y : 0, ease : Quint.easeInOut});
+    TweenMax.fromTo(this.$elLogo, 1, {opacity : 0},{y : 0, opacity : 1, ease : Quint.easeInOut, onComplete:this.logoSpriteWhite.start});
   },
 
   render: function() {

@@ -46,6 +46,12 @@ gulp.task('browserify-client', function() {
     .transform("reactify", {})
    // .plugin(resolutions, ['react'])
     .bundle()
+    .on('error', function(err){
+      // print the error (can replace with gulp-util)
+      console.log(err.message);
+      // end this stream
+      this.emit('end');
+    })
     .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(rename('scripts.js'))

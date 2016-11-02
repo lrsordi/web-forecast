@@ -21,6 +21,7 @@ var WeatherListComponent = React.createClass({
 			title:this.props.title,
 			retracted : this.props.retracted,
 			data : this.props.data,
+			cardOpened : -1,
 			itemAligned : 0,
 			grabbing : false,
 		};
@@ -80,7 +81,7 @@ var WeatherListComponent = React.createClass({
 		this.$listContent.width(this.state.data.daily.data.length * 430);
 		this.$cards = this.$listContent.find(".card-item");
 
-		TweenMax.staggerFrom(this.$cards, 0.6, {y : 40, opacity:0, z : -500, ease : Quint.easeOut, delay:1}, 0.3);
+		TweenMax.staggerFrom(this.$cards, 0.6, {y : 0, opacity:0, z : -500, ease : Quint.easeOut, delay:1}, 0.3);
 		TweenMax.staggerFromTo(this.$cards, 1, {rotationY : 45},{rotationY:0, ease : Back.easeOut, delay:1, overwrite:false}, 0.3);
 
 		this.alignToIndex(0,false);
@@ -101,13 +102,25 @@ var WeatherListComponent = React.createClass({
 
 	renderCards : function(){	
 		var self = this;
+		var hData = {};
 		return this.state.data.daily.data.map(function(item,index){
-			return <WeatherCardComponent index={index} retracted={self.state.retracted} data={item} key={'weahtercard'+index.toString()}/>
+			if(index == 0){
+				hData = self.state.data.hourly.data.splice(0,10);
+			}else{
+				hData = [];
+			}
+
+			return <WeatherCardComponent index={index} ref={"card"+index} hourlyEnabled={index <= 0} retracted={self.state.retracted} data={item} hourlyData={hData} key={'weahtercard'+index.toString()}/>
 		});
 	},
 
-	onClickCard : function(evt){
-		console.log(evt);
+	openCard : function(index){
+		var card = this.refs["card"+index];
+		if(!card.props.hourlyEnabled){
+			return;
+		}
+
+		card.toggleOpen();
 	},
 
 	render: function() {
@@ -151,9 +164,18 @@ var WeatherListComponent = React.createClass({
 	    e.preventDefault();
 
 	    var difTime = new Date().getTime() - this.$iniTime;
+	    var self = this;
+
 	    if(Math.abs(e.clientX - this.$iniMouseX) < 10 && difTime < 1000){
 	    	if($(e.toElement).parents("div.card-item").length){
-	    		this.alignToIndex($(e.toElement).parents("div.card-item").index(),true);
+
+	    		var cardIndex = $(e.toElement).parents("div.card-item").index();
+	    		if(self.state.itemAligned == cardIndex)
+	    		{
+	    			this.openCard(cardIndex);
+	    		}else{
+	    			this.alignToIndex(cardIndex,true);
+	    		}
 	    	}
 	    	return;
 	    }
