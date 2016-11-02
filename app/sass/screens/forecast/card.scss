@@ -12,9 +12,9 @@ div.card-item {
 	background: linear-gradient(to bottom right, rgba(0,0,0,0.5) 20%,rgba(255,255,255,0.62) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
 	&:first-child{
-		background: -moz-linear-gradient(bottom right, rgba(22,22,109,0.5) 20%, rgba(255,255,255,0.62) 100%); /* FF3.6-15 */
-		background: -webkit-linear-gradient(bottom right, rgba(22,22,109,0.5) 20%,rgba(255,255,255,0.62) 100%); /* Chrome10-25,Safari5.1-6 */
-		background: linear-gradient(to bottom right, rgba(22,22,109,0.5) 20%,rgba(255,255,255,0.62) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */		
+		background: -moz-linear-gradient(bottom right, rgba(22,22,109,0.7) 20%, rgba(255,255,255,0.62) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(bottom right, rgba(22,22,109,0.7) 20%,rgba(255,255,255,0.62) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom right, rgba(22,22,109,0.7) 20%,rgba(255,255,255,0.62) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */		
 	}
 
 	border : 2.5px solid rgba(255,255,255,0.35);
