@@ -461,19 +461,14 @@ html, body {
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 700px; }
+  min-height: 800px; }
   #app div.wrapper {
     position: relative;
     display: block;
     float: left;
     width: 100%;
-    height: 100%; }
-    #app div.wrapper section {
-      position: relative;
-      display: block;
-      float: left;
-      width: 100%;
-      min-height: 100%; }
+    height: 100%;
+    min-height: 100%; }
 
 #preloader-bar {
   position: fixed;
@@ -607,13 +602,19 @@ html, body {
 #forecast-wrapper {
   position: absolute;
   width: 100%;
-  height: 100%;
-  display: block;
+  min-height: 100%;
   float: left;
   background: url("../images/intro/bg3.jpg") center center no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  background-attachment: fixed; }
+  #forecast-wrapper #forecast-screen {
+    float: left;
+    width: 100%;
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 40vh; }
   #forecast-wrapper header {
-    position: absolute;
+    position: fixed;
     top: 0px;
     display: block;
     float: left;
@@ -673,7 +674,7 @@ html, body {
             float: left;
             position: relative; }
   #forecast-wrapper footer {
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     display: block;
     float: left;
@@ -779,17 +780,32 @@ html, body {
   #forecast-wrapper div.section-container {
     display: block;
     width: 100%;
+    height: auto;
     float: left;
-    top: 30vh;
+    float: left;
+    top: 200px;
     position: relative; }
+    #forecast-wrapper div.section-container div.loading-layer {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      display: block;
+      float: left;
+      background: rgba(0, 0, 0, 0.3);
+      top: 0px;
+      left: 0px; }
     #forecast-wrapper div.section-container div.weather-list {
       width: 100%;
       display: block;
       float: left;
       position: relative;
       overflow: hidden;
-      height: 50vh;
-      padding-bottom: 50px; }
+      padding-bottom: 50px;
+      -webkit-transition: margin-top 1s ease-in-out;
+      transition: margin-top 1s ease-in-out;
+      margin-top: 30px; }
+      #forecast-wrapper div.section-container div.weather-list:first-child {
+        margin-top: 0px; }
       #forecast-wrapper div.section-container div.weather-list h2 {
         font-family: Sanchez-Regular,sans-serif;
         font-size: 50px;
@@ -810,14 +826,13 @@ html, body {
         display: block;
         float: left;
         position: relative;
-        height: 50vh;
         min-width: 100vw;
         margin-top: 5vh;
         cursor: pointer;
         cursor: -webkit-grab;
         cursor: grab;
-        -webkit-transition: margin-top 0.3s ease-in-out;
-        transition: margin-top 0.3s ease-in-out; }
+        -webkit-transition: margin-top 1s ease-in-out;
+        transition: margin-top 1s ease-in-out; }
         #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item {
           display: inline-block;
           float: left;
@@ -842,7 +857,7 @@ html, body {
           #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item:first-child {
             margin-left: 0px; }
           #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item.retracted {
-            height: 200px; }
+            height: 230px; }
           #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item div.front-side, #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item div.back-side {
             display: block;
             float: left;
@@ -995,5 +1010,3 @@ html, body {
       #forecast-wrapper div.section-container div.weather-list.retracted h2 {
         -webkit-transform: scale(0.7);
                 transform: scale(0.7); }
-      #forecast-wrapper div.section-container div.weather-list.retracted div.cards-container {
-        margin-top: 2vh; }

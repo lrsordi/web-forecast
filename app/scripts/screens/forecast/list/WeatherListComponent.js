@@ -27,6 +27,11 @@ var WeatherListComponent = React.createClass({
 		};
 	},
 
+	externalPositeElements : function(pos){
+		this.$currPosX = pos;
+		TweenMax.to(this.$listContent, 0.5, {x : this.$currPosX, ease : Quint.easeOut, onUpdate:this.updatePos, onUpdateParams:[true]});
+	},
+
 	componentWillReceiveProps: function(nextProps) {
 		this.setState({
 			title:nextProps.title,
@@ -36,7 +41,7 @@ var WeatherListComponent = React.createClass({
 		});
 	},
 
-	alignToIndex : function(index, animating){
+	alignToIndex : function(index, animating, doCall){
 		TweenMax.killTweensOf(this.$listContent);
 		this.setState({
 			itemAligned : index
@@ -74,6 +79,10 @@ var WeatherListComponent = React.createClass({
 				TweenMax.to(currEl, (animating) ? 1 : 0, {scaleX : 1, scaleY : 1, x : xcoef, ease : Quint.easeOut});
 			}
 		});
+
+		if(doCall){
+			this.props.onAlignToIndex(this,index);
+		}
 	},
 
 	componentDidMount: function() {
@@ -81,13 +90,13 @@ var WeatherListComponent = React.createClass({
 		this.$listContent.width(this.state.data.daily.data.length * 430);
 		this.$cards = this.$listContent.find(".card-item");
 
-		TweenMax.staggerFrom(this.$cards, 0.6, {y : 0, opacity:0, z : -500, ease : Quint.easeOut, delay:1}, 0.3);
-		TweenMax.staggerFromTo(this.$cards, 1, {rotationY : 45},{rotationY:0, ease : Back.easeOut, delay:1, overwrite:false}, 0.3);
+		TweenMax.staggerFrom(this.$cards, 0.6, {y : 0, opacity:0, z : -500, ease : Quint.easeOut, delay:(this.props.delayed ? 1 : 0)}, 0.3);
+		TweenMax.staggerFromTo(this.$cards, 1, {rotationY : 45},{rotationY:0, ease : Back.easeOut, delay:(this.props.delayed ? 1 : 0), overwrite:false}, 0.3);
 
 		this.alignToIndex(0,false);
 
 		this.titleSplitText = new SplitText(ReactDOM.findDOMNode(this.refs.title),{type : "chars", position : "relative"});
-		TweenMax.staggerFromTo(this.titleSplitText.chars, 1, {y : 10, opacity : 0}, {y : 0, opacity : 1, delay:0.5, ease : Quint.easeInOut, delay:1}, 0.02);
+		TweenMax.staggerFromTo(this.titleSplitText.chars, 1, {y : 10, opacity : 0}, {y : 0, opacity : 1, ease : Quint.easeInOut, delay:(this.props.delayed ? 1 : 0)}, 0.02);
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
@@ -174,7 +183,7 @@ var WeatherListComponent = React.createClass({
 	    		{
 	    			this.openCard(cardIndex);
 	    		}else{
-	    			this.alignToIndex(cardIndex,true);
+	    			this.alignToIndex(cardIndex,true, true);
 	    		}
 	    	}
 	    	return;
@@ -187,7 +196,7 @@ var WeatherListComponent = React.createClass({
 	    it = Math.max(it,0);
 	    it = Math.min(it,7);
 
-	    this.alignToIndex(it, true);
+	    this.alignToIndex(it, true, true);
 	  },
 
 	onMouseMove: function (evt) {
@@ -199,7 +208,7 @@ var WeatherListComponent = React.createClass({
 	    evt.preventDefault()
 	},
 
-	updatePos : function(){
+	updatePos : function(notcall){
 		var w = $(window).width()/2;
 
 		this.$cards.each(function(evt){
@@ -210,6 +219,9 @@ var WeatherListComponent = React.createClass({
 			var sc = 1 - (coefToCenter * 0.2);
 			TweenMax.to(currEl, 0.4, {scaleX : sc, scaleY : sc, ease : Quint.easeOut});
 		});
+
+		if(!notcall)
+			this.props.onChangePos(this,this.$currPosX);
 	}
 
 });

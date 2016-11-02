@@ -28,7 +28,7 @@ var MainTemplate = React.createClass({
 
   componentDidMount: function() {
     TweenMax.fromTo(ReactDOM.findDOMNode(this), 1,{opacity:0},{opacity:1});
-    this.interval = setInterval(this.reloadData,15000);
+    //this.interval = setInterval(this.reloadData,15000);
   },  
 
   reloadData : function(){

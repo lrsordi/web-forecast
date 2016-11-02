@@ -82,7 +82,6 @@ var WeatherCardComponent = React.createClass({
 	renderHourly : function(){
 
 		return this.state.hourlyData.map(function(item,index){
-			console.log(item);
 			return <div className="line-hourly" key={"hourlydata"+index}>
 						<div className="column-hour">{DateHelper.getAMPMHour(item.time)}</div>
 						<div className="column-icon"><img src={"public/images/icons/"+item.icon+".svg"} /></div>

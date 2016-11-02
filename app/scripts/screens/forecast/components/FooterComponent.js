@@ -1,6 +1,8 @@
 var React = require('react');
 var DateHelper = require('../../../helpers/DateHelper');
 var ReactDOM = require('react-dom');
+var ForecastLoaderHelper = require('../../../helpers/ForecastLoaderHelper');
+var browserHistory = require('react-router').browserHistory;
 
 var FooterComponent = React.createClass({
 	$el : null,
@@ -9,6 +11,7 @@ var FooterComponent = React.createClass({
 		return {
 			lastUpdated:this.props.lastUpdated,
 			loading : this.props.loading,
+			loadingZipcode : false,
 			zipCode : ""
 		};
 	},
@@ -28,7 +31,38 @@ var FooterComponent = React.createClass({
 	},
 
 	performZipSearch : function(){
+		var zipcode = $(ReactDOM.findDOMNode(this.refs.input)).val();
+		if(zipcode.length == 0){
+			alert("Please fill in your zipcode.");
+			return;
+		}
 
+		this.setState({
+			loadingZipcode : true
+		});
+		var self = this;
+
+		ForecastLoaderHelper.getLatLngBasedOnZipCode(zipcode).then(function(result){
+			self.setState({
+				loadingZipcode : false
+			});
+			if(result.status == "ZERO_RESULTS"){
+				alert("No matches found for zipcode \"" + zipcode + "\".");
+				return;
+			}
+			
+			var objResult = result.results[0];
+			var cityName = ForecastLoaderHelper.getCityNameBasedOnGoogleResponse(objResult);
+
+			browserHistory.push("/forecast/comparing/"+objResult.geometry.location.lat + ","+objResult.geometry.location.lng+"/"+cityName);
+			
+		}).fail(function(evt){
+			self.setState({
+				loadingZipcode : false
+			});
+
+			alert("An error occurred during the zipcode search. Please, try again.");
+		});
 	},
 
 
@@ -48,7 +82,14 @@ var FooterComponent = React.createClass({
 						{(this.state.loading) ? "Updating..." : DateHelper.getFooterDate(this.state.lastUpdated)}
 					</div>
 					<div className="add-compare">
-						<input type="text" ref="input" placeholder="Insert your zipcode here..." /><a className="search" onClick={this.performZipSearch}><img src="public/images/search-icon.svg"/></a>
+						<input type="text" ref="input" placeholder="Insert your zipcode here..." />
+						{ !this.state.loadingZipcode ? 
+							<a className="search" ref="searchbtn" onClick={this.performZipSearch}>
+								<img src="public/images/search-icon.svg"/>
+							</a>
+						:
+							null
+						}
 					</div>
 					<a className="reload" ref="reloadbtn" onClick={this.requestUpdate}><img src="public/images/reload.svg"/>{(this.state.loading) ? "Updating..." : "reload now"}</a>
 				</div>

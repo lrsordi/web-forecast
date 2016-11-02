@@ -25,6 +25,7 @@ var MainApplication = React.createClass({
           <Route path="/" component={IntroScreen} />
           <Route path="/forecast" component={MainTemplate}>
             <IndexRoute component={ForecastScreen} />
+            <Route path="comparing/:comparingLatLng/:comparingCityName" component={ForecastScreen} />
           </Route>
       </Router>
     )
