@@ -13,19 +13,33 @@ var WeatherListComponent = React.createClass({
 	$currPosX : null,
 	titleSplitText : null,
 
+	$iniTime : null,
+
 
 	getInitialState: function() {
 		return {
 			title:this.props.title,
 			retracted : this.props.retracted,
 			data : this.props.data,
+			itemAligned : 0,
 			grabbing : false,
 		};
 	},
 
+	componentWillReceiveProps: function(nextProps) {
+		this.setState({
+			title:nextProps.title,
+			retracted : nextProps.retracted,
+			data : nextProps.data,
+			grabbing : false,
+		});
+	},
+
 	alignToIndex : function(index, animating){
 		TweenMax.killTweensOf(this.$listContent);
-
+		this.setState({
+			itemAligned : index
+		})
 		var finx = $(window).width()/2 - (index*(Globals.CARD_WIDTH + Globals.CARD_SPACE)) - Globals.CARD_WIDTH/2;
 
 		// if(index == 0)
@@ -92,6 +106,10 @@ var WeatherListComponent = React.createClass({
 		});
 	},
 
+	onClickCard : function(evt){
+		console.log(evt);
+	},
+
 	render: function() {
 		  var classes = classNames({
 	      'cards-container': true,
@@ -118,14 +136,23 @@ var WeatherListComponent = React.createClass({
 			grabbing : true
 		});
 
-		evt.stopPropagation();
-		evt.preventDefault();
+		this.$iniTime = new Date().getTime();
+		//evt.stopPropagation();
+		//evt.preventDefault();
 	},
 
 	onMouseUp: function (e) {
 	    this.setState({grabbing: false});
 	    e.stopPropagation();
 	    e.preventDefault();
+
+	    var difTime = new Date().getTime() - this.$iniTime;
+	    if(Math.abs(e.clientX - this.$iniMouseX) < 10 && difTime < 1000){
+	    	if($(e.toElement).parents("div.card-item").length){
+	    		this.alignToIndex($(e.toElement).parents("div.card-item").index(),true);
+	    	}
+	    	return;
+	    }
 
 	    var w = $(window).width()/2;
 	    var it = -(this.$currPosX - (w-(Globals.CARD_WIDTH/2))) / (Globals.CARD_WIDTH+Globals.CARD_SPACE);

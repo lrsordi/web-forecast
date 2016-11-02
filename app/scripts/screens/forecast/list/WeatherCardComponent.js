@@ -20,8 +20,13 @@ var WeatherCardComponent = React.createClass({
 		console.log(this.state.data.icon);
 		this.$iconAnim.add(ReactDOM.findDOMNode(this.refs.icon), this.state.data.icon);
 		this.$iconAnim.play();
+	},
 
-
+	componentWillReceiveProps: function(nextProps) {
+		this.setState({
+			data : nextProps.data,
+			index : nextProps.index
+		});
 	},
 
 	render: function() {

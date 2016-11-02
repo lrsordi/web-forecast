@@ -12,6 +12,12 @@ var ForecastScreen = React.createClass({
 		};
 	},
 
+  componentWillReceiveProps: function(nextProps) {
+    this.setState({
+      norfolkData : nextProps.norfolkData
+    })
+  },
+
 
 
   render : function(){

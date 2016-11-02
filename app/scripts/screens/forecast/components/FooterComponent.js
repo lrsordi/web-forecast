@@ -6,7 +6,8 @@ var FooterComponent = React.createClass({
 
 	getInitialState: function() {
 		return {
-			lastUpdated:this.props.lastUpdated
+			lastUpdated:this.props.lastUpdated,
+			loading : this.props.loading
 		};
 	},
 
@@ -15,6 +16,13 @@ var FooterComponent = React.createClass({
 
 		TweenMax.fromTo(ReactDOM.findDOMNode(this.refs.lastupdated), 1, {opacity : 0, y : 30}, {opacity : 1, y : 0, ease : Quint.easeInOut});
    		TweenMax.fromTo(ReactDOM.findDOMNode(this.refs.reloadbtn), 1, {y:-10, opacity : 0},{y : 0, opacity : 1, ease : Quint.easeInOut});
+	},
+
+	componentWillReceiveProps: function(nextProps) {
+		this.setState({
+			loading : nextProps.loading,
+			lastUpdated : nextProps.lastUpdated
+		});
 	},
 
 	formatDate : function(date){
@@ -30,15 +38,22 @@ var FooterComponent = React.createClass({
 		return str + " " + strTime;
 	},
 
+	requestUpdate : function(){
+		if(this.state.loading) return;
+
+		this.props.onRequestUpdate();
+	},
+
+
 	render: function() {
 		return (
 			<footer>
 				<div className="footer-content" ref="lastupdated">
 					<div className="last-updated">
 						<strong>Last updated: </strong>
-						{this.formatDate(this.state.lastUpdated)}
+						{(this.state.loading) ? "Updating..." : this.formatDate(this.state.lastUpdated)}
 					</div>
-					<a className="reload" ref="reloadbtn"><img src="public/images/reload.svg"/>reload now</a>
+					<a className="reload" ref="reloadbtn" onClick={this.requestUpdate}><img src="public/images/reload.svg"/>{(this.state.loading) ? "Updating..." : "reload now"}</a>
 				</div>
 			</footer>
 		);
