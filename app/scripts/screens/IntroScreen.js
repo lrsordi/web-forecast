@@ -89,8 +89,8 @@ var IntroScreen = React.createClass({
 		      	  <div className={classes}>
 				      <h1 ref='main-logo'>Grow</h1>
 			      </div>
-			      <h2>Norfolk Forecast</h2>
-			      <p>This project was developed for showing up the current forecast data from Norfolk, VA, and let you compare with another place around the world.<br/><br/><br/>Provided by <a href="http://forecast.io" target="_blank">Forecast.io.</a></p>
+			      <h2>Norfolk Weather</h2>
+			      <p>This project was developed to show up the current forecast data from Norfolk, VA, and let you compare with another place around the world.<br/><br/><br/>Provided by <a href="http://forecast.io" target="_blank">Forecast.io.</a></p>
 			      <Link to="/forecast" className="proceed-btn" title="proceed">Proceed</Link>
 			    </div>
 		    </div>

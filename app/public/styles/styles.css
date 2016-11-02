@@ -602,3 +602,233 @@ html, body {
         background: #393531;
         color: #ffffff;
         box-shadow: 3px 3px rgba(0, 0, 0, 0.2); }
+
+#forecast-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: block;
+  float: left;
+  background: url("../images/intro/bg1.jpg") center center no-repeat;
+  background-size: cover; }
+  #forecast-wrapper header {
+    position: fixed;
+    top: 0px;
+    display: block;
+    float: left;
+    width: 100%;
+    z-index: 10;
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
+    #forecast-wrapper header div.header-content {
+      margin: 0 auto;
+      position: relative;
+      padding: 2vh;
+      display: block;
+      height: 10vh; }
+      #forecast-wrapper header div.header-content a.back-to-intro {
+        font-family: ProximaNova-Bold,sans-serif;
+        font-size: 18px;
+        color: #ffffff;
+        float: left;
+        margin-top: 3.2vh;
+        cursor: pointer; }
+        #forecast-wrapper header div.header-content a.back-to-intro img {
+          height: 14px;
+          position: relative;
+          top: 1px;
+          margin-right: 6px;
+          -webkit-transition: margin-right 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+          transition: margin-right 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+          transition: margin-right 0.2s ease-in-out, transform 0.2s ease-in-out;
+          transition: margin-right 0.2s ease-in-out, transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out; }
+        #forecast-wrapper header div.header-content a.back-to-intro:hover img {
+          margin-right: 8px;
+          -webkit-transform: scale(1.2);
+                  transform: scale(1.2); }
+      #forecast-wrapper header div.header-content h1.spritesheet {
+        display: block;
+        position: relative;
+        width: 106px;
+        height: 106px;
+        font-size: 0px;
+        background: url("../images/white_anim_logo.png") 0 0 no-repeat;
+        margin: 0 auto; }
+      #forecast-wrapper header div.header-content nav {
+        position: relative;
+        float: right;
+        display: block; }
+        #forecast-wrapper header div.header-content nav ul.main-menu {
+          display: block;
+          position: relative;
+          float: left; }
+          #forecast-wrapper header div.header-content nav ul.main-menu li {
+            display: inline-block;
+            float: left;
+            position: relative; }
+  #forecast-wrapper footer {
+    position: fixed;
+    bottom: 0px;
+    display: block;
+    float: left;
+    width: 100%;
+    z-index: 20;
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
+    #forecast-wrapper footer div.footer-content {
+      margin: 0 auto;
+      position: relative;
+      padding: 2vh;
+      display: block;
+      height: 10vh; }
+      #forecast-wrapper footer div.footer-content div.last-updated {
+        display: block;
+        position: relative;
+        display: block;
+        float: left;
+        color: #ffffff;
+        font-family: ProximaNova-Light,sans-serif;
+        font-size: 15px;
+        margin-top: 3.2vh; }
+        #forecast-wrapper footer div.footer-content div.last-updated strong {
+          font-family: ProximaNova-Bold,sans-serif;
+          font-size: 18px; }
+      #forecast-wrapper footer div.footer-content a.reload {
+        font-family: ProximaNova-Bold,sans-serif;
+        font-size: 18px;
+        color: #ffffff;
+        float: right;
+        margin-top: 3.2vh;
+        cursor: pointer;
+        padding-right: 0px;
+        -webkit-transition: padding-right 0.2s ease-in-out;
+        transition: padding-right 0.2s ease-in-out; }
+        #forecast-wrapper footer div.footer-content a.reload img {
+          height: 14px;
+          position: relative;
+          top: 3px;
+          margin-right: 6px;
+          -webkit-transition: -webkit-transform 0.5s ease-in-out;
+          transition: -webkit-transform 0.5s ease-in-out;
+          transition: transform 0.5s ease-in-out;
+          transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out; }
+        #forecast-wrapper footer div.footer-content a.reload:hover {
+          padding-right: 5px; }
+          #forecast-wrapper footer div.footer-content a.reload:hover img {
+            -webkit-transform: rotate(180deg);
+                    transform: rotate(180deg); }
+  #forecast-wrapper div.section-container {
+    display: block;
+    width: 100%;
+    float: left;
+    top: 30vh;
+    position: relative; }
+    #forecast-wrapper div.section-container div.weather-list {
+      width: 100%;
+      display: block;
+      float: left;
+      position: relative;
+      height: 70vh;
+      overflow: hidden; }
+      #forecast-wrapper div.section-container div.weather-list h2 {
+        font-family: Sanchez-Regular,sans-serif;
+        font-size: 50px;
+        width: 100%;
+        display: block;
+        float: left;
+        width: 100%;
+        text-align: center;
+        color: #ffffff;
+        text-shadow: 1px 1px rgba(0, 0, 0, 0.5); }
+      #forecast-wrapper div.section-container div.weather-list div.cards-container {
+        -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+        display: block;
+        float: left;
+        position: relative;
+        left: 50%;
+        height: 60vh;
+        min-width: 100vw;
+        margin-top: 5vh;
+        cursor: -webkit-grab;
+        cursor: grab; }
+        #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item {
+          display: inline-block;
+          float: left;
+          position: relative;
+          height: 330px;
+          width: 400px;
+          border-radius: 20px;
+          padding: 30px;
+          /* FF3.6-15 */
+          background: -webkit-linear-gradient(bottom right, rgba(0, 0, 0, 0.5) 20%, rgba(255, 255, 255, 0.62) 100%);
+          /* Chrome10-25,Safari5.1-6 */
+          background: -webkit-linear-gradient(top left, rgba(0, 0, 0, 0.5) 20%, rgba(255, 255, 255, 0.62) 100%);
+          background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5) 20%, rgba(255, 255, 255, 0.62) 100%);
+          /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+          border: 2.5px solid rgba(255, 255, 255, 0.35);
+          margin-left: 20px;
+          overflow: hidden;
+          -webkit-transform: perspective(1500);
+                  transform: perspective(1500);
+          box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2); }
+          #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item:first-child {
+            margin-left: 0px; }
+          #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item div.line-date {
+            display: inline-block;
+            float: left;
+            position: relative; }
+            #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item div.line-date strong {
+              font-family: ProximaNova-Bold,sans-serif;
+              font-size: 18px;
+              color: #ffffff;
+              text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+              width: 100%;
+              display: block;
+              float: left;
+              position: relative;
+              padding-bottom: 5px;
+              border-bottom: 1px solid rgba(255, 255, 255, 0.6); }
+          #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item div.line-temperature {
+            display: block;
+            float: left;
+            clear: both;
+            position: relative;
+            width: 100%;
+            height: 160px;
+            padding-top: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4); }
+            #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item div.line-temperature div.column-icon {
+              display: inline-block;
+              position: relative;
+              float: left;
+              width: 50%;
+              height: 100%; }
+              #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item div.line-temperature div.column-icon canvas {
+                left: 50%;
+                margin-left: -64px;
+                position: relative; }
+            #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item div.line-temperature div.column-degrees {
+              display: inline-block;
+              float: left;
+              position: relative;
+              width: 50%;
+              height: 100%; }
+              #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item div.line-temperature div.column-degrees strong {
+                display: block;
+                clear: both;
+                width: 100%;
+                font-family: ProximaNova-Light,sans-serif;
+                color: #ffffff;
+                text-align: center;
+                font-size: 60px;
+                text-shadow: 1px 1px rgba(0, 0, 0, 0.5); }
+                #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item div.line-temperature div.column-degrees strong img {
+                  width: 40px;
+                  margin-right: 20px; }

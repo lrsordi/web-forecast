@@ -1,0 +1,75 @@
+header {
+  position : fixed;
+  top : 0px;
+  display : block;
+  float : left;
+  width : 100%;
+  z-index : 10;
+
+  background: -moz-linear-gradient(top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+  div.header-content {
+    margin : 0 auto;
+    position : relative;
+    padding : 2vh;
+    display : block;
+    height : 10vh;
+
+    a.back-to-intro {
+      font-family: ProximaNova-Bold,sans-serif;
+      font-size : 18px;
+      color : #ffffff;
+      float : left;
+      margin-top : 3.2vh;
+      cursor : pointer;
+
+      img {
+        height: 14px;
+        position: relative;
+        top: 1px;
+        margin-right: 6px;
+        transition : margin-right 0.2s ease-in-out, transform 0.2s ease-in-out;
+      }
+
+      &:hover{
+        img{margin-right : 8px; transform : scale(1.2);}
+      }
+    }          
+
+    h1.spritesheet {
+      display : block;
+      position : relative;
+      width : 106px;
+      height : 106px;
+      font-size : 0px;
+      background : url('../images/white_anim_logo.png') 0 0 no-repeat;
+      margin : 0 auto;
+    }
+
+    nav {
+      position : relative;
+      float : right;
+      display : block;
+
+
+
+      ul.main-menu {
+        display : block;
+        position : relative;
+        float : left;
+
+
+
+        li {
+          display : inline-block;
+          float : left;
+          position : relative;
+          
+
+        }
+      }
+    }
+  }
+}

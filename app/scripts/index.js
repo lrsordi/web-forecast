@@ -5,6 +5,7 @@ var React = require('react');
 var Globals = require('./core/Globals');
 var ForecastLoaderHelper = require('./helpers/ForecastLoaderHelper');
 require('gsap');
+require('./vendors/Skycons');
 
 
 TweenMax.ticker.fps(60);
@@ -22,6 +23,7 @@ var Index = function(){
 
 
 	window.Globals = Globals;
+	Globals.SKYCONS = new Skycons({"color": "white","resizeClear": true});
 
 	function initReferences(){
 		preloaderBar = $('#preloader-bar');

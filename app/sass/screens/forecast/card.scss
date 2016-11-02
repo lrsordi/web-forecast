@@ -1,0 +1,92 @@
+div.card-item {
+	display: inline-block;
+	float : left;
+	position : relative;
+	height : 330px;
+	width : 400px;	
+	border-radius : 20px;
+	padding : 30px;
+	background: -moz-linear-gradient(bottom right, rgba(0,0,0,0.5) 20%, rgba(255,255,255,0.62) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(bottom right, rgba(0,0,0,0.5) 20%,rgba(255,255,255,0.62) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom right, rgba(0,0,0,0.5) 20%,rgba(255,255,255,0.62) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+	border : 2.5px solid rgba(255,255,255,0.35);
+	margin-left : 20px;		  		
+	overflow : hidden;
+
+	transform :  perspective(1500);
+	box-shadow : 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+	&:first-child{margin-left : 0px;}
+
+
+	div.line-date {
+		display : inline-block;
+		float : left;
+		position : relative;
+
+		strong {
+      		font-family: ProximaNova-Bold,sans-serif;
+      		font-size : 18px;
+      		color : #ffffff;
+      		text-shadow : 1px 1px rgba(0,0,0,0.5);
+
+      		width : 100%;
+      		display : block;
+      		float : left;
+      		position : relative;
+      		padding-bottom : 5px;
+      		border-bottom : 1px solid rgba(255,255,255,0.6);
+      	}
+	}
+
+	div.line-temperature {
+		display : block;
+		float : left;
+		clear : both;
+		position : relative;
+		width : 100%;
+		height : 160px;
+		padding-top : 20px;
+
+		border-bottom : 1px solid rgba(255,255,255,0.4);
+
+		div.column-icon {
+			display : inline-block;
+			position : relative;
+			float : left;
+			width : 50%;
+			height : 100%;
+
+			canvas {
+				left : 50%;
+				margin-left : -64px;
+				position : relative;
+			}
+		}
+
+
+
+		div.column-degrees {
+			display : inline-block;
+			float : left;
+			position : relative;
+			width : 50%;
+			height : 100%;
+
+			strong {
+				display: block;
+				clear : both;
+				width : 100%;
+				font-family: ProximaNova-Light,sans-serif;
+				color : #ffffff;
+				text-align : center;
+				font-size : 60px;		
+				text-shadow : 1px 1px rgba(0,0,0,0.5);
+				img {
+					width : 40px;
+					margin-right : 20px;
+				}
+			}
+		}
+	}
+}
