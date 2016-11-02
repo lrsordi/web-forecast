@@ -2,6 +2,7 @@ var React = require('react');
 var DateHelper = require('../../../helpers/DateHelper');
 var Globals = require('../../../core/Globals');
 var ReactDOM = require("react-dom");
+var classNames = require('classnames');
 
 var WeatherCardComponent = React.createClass({
 	$iconAnim : null,
@@ -11,7 +12,8 @@ var WeatherCardComponent = React.createClass({
 	getInitialState: function() {
 		return {
 			data: this.props.data,
-			index : this.props.index
+			index : this.props.index,
+			retracted : this.props.retracted
 		};
 	},
 
@@ -25,13 +27,17 @@ var WeatherCardComponent = React.createClass({
 	componentWillReceiveProps: function(nextProps) {
 		this.setState({
 			data : nextProps.data,
-			index : nextProps.index
+			index : nextProps.index,
+			retracted : nextProps.retracted
 		});
 	},
 
 	render: function() {
+		var classes = classNames({
+	      'card-item': true,
+	      'retracted': this.state.retracted });
 		return (
-			<div className="card-item">
+			<div className={classes}>
 				<div className="line-date">
 					<strong>{DateHelper.getDateTitle(this.state.data.time)}</strong>
 				</div>

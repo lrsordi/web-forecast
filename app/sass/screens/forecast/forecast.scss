@@ -39,6 +39,8 @@
 			text-align: center;
 			color : #ffffff;
 			text-shadow : 1px 1px rgba(0,0,0,0.5);
+
+			transition : transform 0.3s ease-in-out;
 	  	}
 
 	  	div.cards-container {
@@ -51,8 +53,18 @@
 	  		margin-top : 5vh;
 	  		cursor : pointer;
 			cursor : grab;
-
+			transition : margin-top 0.3s ease-in-out;
 	  		@import "card.scss";
+	  	}
+
+	  	&.retracted{
+	  		h2 {
+	  			transform : scale(0.7);
+	  		}
+
+	  		div.cards-container {
+	  			margin-top : 2vh;
+	  		}
 	  	}
 	  }
   }

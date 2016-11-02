@@ -19,6 +19,12 @@ div.card-item {
 	box-shadow : 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
 	&:first-child{margin-left : 0px;}
 
+	transition : height 0.3s ease-in-out;
+
+	&.retracted{
+		height : 80px;
+	}
+
 
 	div.line-date {
 		display : inline-block;

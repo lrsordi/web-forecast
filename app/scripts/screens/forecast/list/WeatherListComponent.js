@@ -99,10 +99,10 @@ var WeatherListComponent = React.createClass({
 	    }
 	},
 
-	renderCards : function(){
-
+	renderCards : function(){	
+		var self = this;
 		return this.state.data.daily.data.map(function(item,index){
-			return <WeatherCardComponent index={index} data={item} key={'weahtercard'+index.toString()}/>
+			return <WeatherCardComponent index={index} retracted={self.state.retracted} data={item} key={'weahtercard'+index.toString()}/>
 		});
 	},
 
@@ -113,9 +113,13 @@ var WeatherListComponent = React.createClass({
 	render: function() {
 		  var classes = classNames({
 	      'cards-container': true,
-	      'grabbing': this.state.grabbing });
+	      'retracted': this.state.retracted });
+
+	      var classesList = classNames({
+	      'weather-list': true,
+	      'retracted': this.state.retracted });
 		return (
-			<div className="weather-list">
+			<div className={classesList}>
 				<h2 ref="title">{this.state.title}</h2>
 				<div className={classes} ref="listContent" onMouseDown={this.onMouseDown}>
 				{ this.renderCards() }

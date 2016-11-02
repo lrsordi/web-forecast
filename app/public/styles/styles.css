@@ -743,7 +743,11 @@ html, body {
         width: 100%;
         text-align: center;
         color: #ffffff;
-        text-shadow: 1px 1px rgba(0, 0, 0, 0.5); }
+        text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+        -webkit-transition: -webkit-transform 0.3s ease-in-out;
+        transition: -webkit-transform 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out; }
       #forecast-wrapper div.section-container div.weather-list div.cards-container {
         -webkit-transform-style: preserve-3d;
                 transform-style: preserve-3d;
@@ -755,7 +759,9 @@ html, body {
         margin-top: 5vh;
         cursor: pointer;
         cursor: -webkit-grab;
-        cursor: grab; }
+        cursor: grab;
+        -webkit-transition: margin-top 0.3s ease-in-out;
+        transition: margin-top 0.3s ease-in-out; }
         #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item {
           display: inline-block;
           float: left;
@@ -775,9 +781,13 @@ html, body {
           overflow: hidden;
           -webkit-transform: perspective(1500) translate3d(0px, 0px, 0.1px);
                   transform: perspective(1500) translate3d(0px, 0px, 0.1px);
-          box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2); }
+          box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+          -webkit-transition: height 0.3s ease-in-out;
+          transition: height 0.3s ease-in-out; }
           #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item:first-child {
             margin-left: 0px; }
+          #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item.retracted {
+            height: 80px; }
           #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item div.line-date {
             display: inline-block;
             float: left;
@@ -855,3 +865,8 @@ html, body {
               #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item div.line-auxiliar-data div.column-auxiliar p {
                 margin-left: 3px;
                 font-family: ProximaNova-Light,sans-serif; }
+      #forecast-wrapper div.section-container div.weather-list.retracted h2 {
+        -webkit-transform: scale(0.7);
+                transform: scale(0.7); }
+      #forecast-wrapper div.section-container div.weather-list.retracted div.cards-container {
+        margin-top: 2vh; }
