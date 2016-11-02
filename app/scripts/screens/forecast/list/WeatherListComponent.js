@@ -136,6 +136,15 @@ var WeatherListComponent = React.createClass({
 		}
 	},
 
+	forceCloseCard : function(index){
+		var card = this.refs["card"+index];
+		if(!card.props.hourlyEnabled){
+			return;
+		}
+
+		card.close();		
+	},
+
 	render: function() {
 		  var classes = classNames({
 	      'cards-container': true,

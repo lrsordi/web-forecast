@@ -48,6 +48,7 @@ var ForecastScreen = React.createClass({
 
     if(this.state.loadingComparing == false && this.state.comparingData != prevState.comparingData && this.state.comparingData != null){
       this.refs.norfolkList.alignToIndex(0,true);
+      this.refs.norfolkList.forceCloseCard(0);
     }
   },
 

@@ -36,6 +36,12 @@ var WeatherCardComponent = React.createClass({
 		})
 	},
 
+	close : function(){
+		this.setState({
+			opened : false
+		})
+	},
+
 	componentDidUpdate: function(prevProps, prevState) {
 		if(this.state.opened && !prevState.opened){
 			TweenMax.to(this.$el, 0.5, {rotationY : 90, ease : Quint.easeIn});
