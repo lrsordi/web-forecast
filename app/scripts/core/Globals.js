@@ -4,7 +4,7 @@ var Globals = {
 	NORFOLK_LAST_DATA : [],
 	NORFOLK_LAST_UPDATED : [],
 	CARD_WIDTH : 400,
-	CARD_SPACE : 30,
+	CARD_SPACE : 20,
 	SKYCONS : null
 }
 

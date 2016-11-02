@@ -4,6 +4,7 @@ var Link = require('react-router').Link;
 var HeaderComponent = require('./components/HeaderComponent');
 var FooterComponent = require('./components/FooterComponent');
 var Globals = require('../../core/Globals');
+var ReactDOM = require('react-dom');
 
 
 var MainTemplate = React.createClass({
@@ -13,6 +14,10 @@ var MainTemplate = React.createClass({
       norfolkData : Globals.NORFOLK_LAST_DATA
     }
   },
+
+  componentDidMount: function() {
+    TweenMax.fromTo(ReactDOM.findDOMNode(this), 1,{opacity:0},{opacity:1});
+  },  
 
   render : function(){
     return (

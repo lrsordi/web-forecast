@@ -5,7 +5,7 @@
   display : block;
   float : left;
 
-  background : url('../images/intro/bg1.jpg') center center no-repeat;
+  background : url('../images/intro/bg3.jpg') center center no-repeat;
   background-size : cover;
 
   @import "header.scss";
@@ -53,10 +53,6 @@
 			cursor : grab;
 
 	  		@import "card.scss";
-
-	  		&.grabbing {
-	  			cursor : grabbing !important;
-	  		}
 	  	}
 	  }
   }

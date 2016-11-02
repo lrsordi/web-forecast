@@ -11,6 +11,7 @@ var WeatherListComponent = React.createClass({
 	$finPosX : null,
 	$iniMouseX : null,
 	$currPosX : null,
+	titleSplitText : null,
 
 
 	getInitialState: function() {
@@ -23,17 +24,19 @@ var WeatherListComponent = React.createClass({
 	},
 
 	alignToIndex : function(index, animating){
+		TweenMax.killTweensOf(this.$listContent);
 
-		var finx = Math.round(($(window).width()/2) - (index*Globals.CARD_WIDTH) - (Globals.CARD_SPACE) - (Globals.CARD_WIDTH/2));
-		if(index == 0)
-			finx += Globals.CARD_SPACE;
+		var finx = $(window).width()/2 - (index*(Globals.CARD_WIDTH + Globals.CARD_SPACE)) - Globals.CARD_WIDTH/2;
 
-		if(!animating){
+		// if(index == 0)
+		// 	finx += Globals.CARD_SPACE;
+
+		//if(!animating){
 			this.$finPosX = finx;
 			this.$currPosX = this.$finPosX;
-		}
+		//}
 
-		TweenMax.to(this.$listContent, (animating) ? 1 : 0, {x : finx, ease : Quint.easeOut});
+		TweenMax.to(this.$listContent, (animating) ? 0.5 : 0, {x : finx, ease : Quint.easeOut});
 		this.$cards.each(function(){
 			var xcoef = 0;
 			var currIndex = $(this).index();
@@ -47,6 +50,7 @@ var WeatherListComponent = React.createClass({
 				xcoef = difIndex*Globals.CARD_SPACE*(1/0.8);
 				xcoef -= Globals.CARD_SPACE;
 			}
+
 
 			if(currIndex != index){
 				TweenMax.to(currEl, (animating) ? 1 : 0, {scaleX : 0.8, scaleY : 0.8, x : xcoef, ease : Quint.easeOut});
@@ -62,10 +66,13 @@ var WeatherListComponent = React.createClass({
 		this.$listContent.width(this.state.data.daily.data.length * 430);
 		this.$cards = this.$listContent.find(".card-item");
 
-		TweenMax.staggerFrom(this.$cards, 0.6, {y : 40, opacity:0, z : -500, ease : Quint.easeOut}, 0.3);
-		TweenMax.staggerFromTo(this.$cards, 1, {rotationY : 45},{rotationY:0, ease : Back.easeOut, overwrite:false}, 0.3);
+		TweenMax.staggerFrom(this.$cards, 0.6, {y : 40, opacity:0, z : -500, ease : Quint.easeOut, delay:1}, 0.3);
+		TweenMax.staggerFromTo(this.$cards, 1, {rotationY : 45},{rotationY:0, ease : Back.easeOut, delay:1, overwrite:false}, 0.3);
 
 		this.alignToIndex(0,false);
+
+		this.titleSplitText = new SplitText(ReactDOM.findDOMNode(this.refs.title),{type : "chars", position : "relative"});
+		TweenMax.staggerFromTo(this.titleSplitText.chars, 1, {y : 10, opacity : 0}, {y : 0, opacity : 1, delay:0.5, ease : Quint.easeInOut, delay:1}, 0.02);
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
@@ -91,7 +98,7 @@ var WeatherListComponent = React.createClass({
 	      'grabbing': this.state.grabbing });
 		return (
 			<div className="weather-list">
-				<h2>{this.state.title}</h2>
+				<h2 ref="title">{this.state.title}</h2>
 				<div className={classes} ref="listContent" onMouseDown={this.onMouseDown}>
 				{ this.renderCards() }
 				</div>
@@ -103,6 +110,7 @@ var WeatherListComponent = React.createClass({
 
 	onMouseDown : function(evt){
 		if (evt.button !== 0) return;
+		TweenMax.killTweensOf(this.$listContent);
 		this.$iniMouseX = evt.clientX;
 		this.$iniPosX = this.$currPosX;
 
@@ -118,6 +126,15 @@ var WeatherListComponent = React.createClass({
 	    this.setState({grabbing: false});
 	    e.stopPropagation();
 	    e.preventDefault();
+
+	    var w = $(window).width()/2;
+	    var it = -(this.$currPosX - (w-(Globals.CARD_WIDTH/2))) / (Globals.CARD_WIDTH+Globals.CARD_SPACE);
+	    it = Math.round(it);
+
+	    it = Math.max(it,0);
+	    it = Math.min(it,7);
+
+	    this.alignToIndex(it, true);
 	  },
 
 	onMouseMove: function (evt) {

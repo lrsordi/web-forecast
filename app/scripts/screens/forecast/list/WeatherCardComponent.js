@@ -7,6 +7,7 @@ var WeatherCardComponent = React.createClass({
 	$iconAnim : null,
 
 
+
 	getInitialState: function() {
 		return {
 			data: this.props.data,
@@ -19,6 +20,8 @@ var WeatherCardComponent = React.createClass({
 		console.log(this.state.data.icon);
 		this.$iconAnim.add(ReactDOM.findDOMNode(this.refs.icon), this.state.data.icon);
 		this.$iconAnim.play();
+
+
 	},
 
 	render: function() {
@@ -36,7 +39,18 @@ var WeatherCardComponent = React.createClass({
 						<strong className="min"><img src="public/images/arrow-down.svg"/>{Math.round(this.state.data.temperatureMin).toString() + "°"}</strong>
 					</div>
 				</div>
-				<div className="line-auxiliar-data"></div>
+				<div className="line-auxiliar-data">
+					<div className="column-auxiliar">
+						<strong>Wind:</strong><p>{this.state.data.windSpeed.toString() + " m/h"}</p>
+						<strong>Humidity:</strong><p>{Math.round(this.state.data.humidity * 100) + "%"}</p>
+						<strong>Dew Pt:</strong><p>{Math.round(this.state.data.dewPoint) + "°"}</p>
+					</div>
+					<div className="column-auxiliar">
+						<strong>Ozone:</strong><p>{this.state.data.ozone}</p>
+						<strong>Visibility:</strong><p>{(this.state.data.visibility == undefined) ? "n/a" : this.state.data.visibility + "m"}</p>
+						<strong>Pressure:</strong><p>{Math.round(this.state.data.pressure) + "mb"}</p>					
+					</div>
+				</div>
 			</div>
 		);
 	}

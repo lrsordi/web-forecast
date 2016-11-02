@@ -24,6 +24,7 @@ div.card-item {
 		display : inline-block;
 		float : left;
 		position : relative;
+		width : 100%;
 
 		strong {
       		font-family: ProximaNova-Bold,sans-serif;
@@ -36,7 +37,7 @@ div.card-item {
       		float : left;
       		position : relative;
       		padding-bottom : 5px;
-      		border-bottom : 1px solid rgba(255,255,255,0.6);
+      		border-bottom : 2px solid rgba(255,255,255,0.6);
       	}
 	}
 
@@ -87,6 +88,38 @@ div.card-item {
 					width : 40px;
 					margin-right : 20px;
 				}
+			}
+		}
+	}
+
+	div.line-auxiliar-data{
+		display : block;
+		float : left;
+		clear : both;
+		width : 100%;
+		font-family: ProximaNova-Light,sans-serif;
+		color : #ffffff;
+		padding-top : 10px;
+		font-size : 18px;
+
+		div.column-auxiliar {
+			display : inline-block;
+			float : left;
+			position : relative;
+			width : 50%;
+			height : 100%;
+
+			strong, p{
+				display : inline-block;
+				float : left;
+				position : relative;
+				margin-top : 5px;
+				font-family: ProximaNova-Bold,sans-serif;
+			}
+
+			p {
+				margin-left : 3px;
+				font-family: ProximaNova-Light,sans-serif;
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 var React = require('react');
 var Link = require('react-router').Link;
+var ReactDOM = require('react-dom');
 var WeatherListComponent = require("./list/WeatherListComponent");
 
 
@@ -10,13 +11,16 @@ var ForecastScreen = React.createClass({
 			norfolkData : this.props.norfolkData
 		};
 	},
-    render : function(){
-      return (
-      	<div className="section-container">
-        	<WeatherListComponent data={this.state.norfolkData} title="Norfolk, VA" retracted={this.state.comparing} />
-        </div>
-      )
-    }
+
+
+
+  render : function(){
+    return (
+    	<div className="section-container">
+      	<WeatherListComponent data={this.state.norfolkData} title="Norfolk, VA" retracted={this.state.comparing} />
+      </div>
+    )
+  }
 });
 
 

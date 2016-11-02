@@ -12,7 +12,7 @@ footer {
   div.footer-content {
     margin : 0 auto;
     position : relative;
-    padding : 2vh;
+    padding : 5vh;
     display : block;
     height : 10vh;
 
@@ -26,7 +26,6 @@ footer {
     	color : #ffffff;
     	font-family: ProximaNova-Light,sans-serif;
       	font-size : 15px;
-      	margin-top : 3.2vh;
 
       	strong {
       		font-family: ProximaNova-Bold,sans-serif;
@@ -39,7 +38,6 @@ footer {
       font-size : 18px;
       color : #ffffff;
       float : right;
-      margin-top : 3.2vh;
       cursor : pointer;
       padding-right : 0px;
       transition : padding-right 0.2s ease-in-out;
