@@ -2,6 +2,7 @@ var Globals = require('../core/Globals');
 
 var ForecastLoaderHelper = {
 	NORFOLK_LAT_LNG : "36.8951441,-76.3256273",
+	GECODING_KEY : "AIzaSyCX6K1ddl7GLNnRRNHMnG0vvN-CVSNiMAE",
 	SECRET : "e1df1e2cd4cacc56194f2265e4b927f5",
 
 	loadNorfolkData : function(){
