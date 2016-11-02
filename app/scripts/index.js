@@ -1,8 +1,8 @@
 window.$ = window.jQuery = require('jquery');
-var Application = require('./Application');
+var MainApplication = require('./MainApplication');
 var ReactDOM = require('react-dom');
 var React = require('react');
-var Globals = require('./Globals');
+var Globals = require('./core/Globals');
 var ForecastLoaderHelper = require('./helpers/ForecastLoaderHelper');
 require('gsap');
 
@@ -45,7 +45,7 @@ var Index = function(){
 		queue.on("complete", handleQueueComplete);
 		for(var i = 1; i <= 5; i++){
 			queue.loadFile({src : "public/images/intro/bg"+i+".jpg", type:createjs.AbstractLoader.IMAGE, id : "imageintro"+i, index : i});
-		}		
+		}
 
 		queue.load();
 	}
@@ -53,7 +53,7 @@ var Index = function(){
 	function endLoading(){
 		TweenMax.to(preloaderBar, 0.5, {scaleY : 0, ease : Expo.easeInOut});
 		$("#app").show();
-		ReactDOM.render((<Application/>), $("#app")[0]);
+		ReactDOM.render((<MainApplication/>), $("#app")[0]);
 	}
 
 	function loadForecastData(){
@@ -83,12 +83,12 @@ var Index = function(){
 
 	function handleQueueProgress(evt){
 		setQueuePercentage(evt.progress * 0.8);
-		
+
 	}
 
 	function handleFileComplete(evt){
 		Globals.ARR_INTRO_BACKGROUNDS[evt.item.index] = evt.result.src;
-	} 
+	}
 
 	return {
 		handleQueueComplete : handleQueueComplete,

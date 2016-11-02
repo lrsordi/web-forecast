@@ -34,7 +34,7 @@ var sass = require('gulp-sass');
  */
 gulp.task('browserify-client', function() {
   var b = browserify({
-    entries : 'app/scripts/index.js',
+    entries : 'app/scripts/Index.js',
     options: {
       transform: ['reactify'],
       external: ['react/addons']

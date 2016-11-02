@@ -14,7 +14,7 @@ require('./vendors/SplitText.min');
 
 
 
-var Application = React.createClass({
+var MainApplication = React.createClass({
 
 
   render : function(){
@@ -29,4 +29,4 @@ var Application = React.createClass({
   }
 });
 
-module.exports = Application;
+module.exports = MainApplication;

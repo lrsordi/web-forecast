@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Link = require('react-router').Link;
-var Globals = require('../Globals');
+var Globals = require('../core/Globals');
 var SpriteSheet = require('../vendors/SpriteSheet');
 
 var classNames = require('classnames');
@@ -17,21 +17,21 @@ var IntroScreen = React.createClass({
 
 	getInitialState: function() {
 		return {
-			background : Math.floor(Math.random() * 5) + 1, 
+			background : Math.floor(Math.random() * 5) + 1,
 		};
 	},
 
 	componentWillLeave : function(){
 		alert("WILL LEAVE");
 	},
-	
+
 	componentDidMount: function() {
 		// entrance animation
 		this.$el = ReactDOM.findDOMNode(this.refs["intro-screen"]);
-		
+
 		this.logoSpriteWhite = new SpriteSheet();
 					// DOM object, total de frames, fps, width, height, path
-		this.logoSpriteWhite.build($(this.$el).find("h1"), 20, 28, 106, 106, 'public/images/white_anim_logo.png');		
+		this.logoSpriteWhite.build($(this.$el).find("h1"), 20, 28, 106, 106, 'public/images/white_anim_logo.png');
 		//this.logoSpriteWhite.start();
 
 

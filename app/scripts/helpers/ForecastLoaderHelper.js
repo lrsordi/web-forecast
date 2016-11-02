@@ -1,4 +1,4 @@
-var Globals = require('../Globals');
+var Globals = require('../core/Globals');
 
 var ForecastLoaderHelper = {
 	NORFOLK_LAT_LNG : "36.8951441,-76.3256273",
