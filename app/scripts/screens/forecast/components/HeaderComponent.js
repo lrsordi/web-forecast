@@ -24,7 +24,7 @@ var HeaderComponent = React.createClass({
       <header>
         <div className="header-content">
           <Link to="/" className="back-to-intro" ref="backbtn"><img src="public/images/left-arrow-back.svg"/>back to intro</Link>
-          <h1 className='spritesheet' ref='logo'>Grow</h1>
+          <Link to="/forecast"><h1 className='spritesheet' ref='logo'>Grow</h1></Link>
         </div>
       </header>
     );

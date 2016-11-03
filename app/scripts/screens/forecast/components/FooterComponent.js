@@ -31,6 +31,7 @@ var FooterComponent = React.createClass({
 	},
 
 	performZipSearch : function(){
+		if(this.state.loadingZipcode) return;
 		var zipcode = $(ReactDOM.findDOMNode(this.refs.input)).val();
 		if(zipcode.length == 0){
 			alert("Please fill in your zipcode.");
@@ -53,7 +54,7 @@ var FooterComponent = React.createClass({
 			
 			var objResult = result.results[0];
 			var cityName = ForecastLoaderHelper.getCityNameBasedOnGoogleResponse(objResult);
-
+			$(ReactDOM.findDOMNode(self.refs.input)).val("");
 			browserHistory.push("/forecast/comparing/"+objResult.geometry.location.lat + ","+objResult.geometry.location.lng+"/"+cityName);
 			
 		}).fail(function(evt){
@@ -63,6 +64,12 @@ var FooterComponent = React.createClass({
 
 			alert("An error occurred during the zipcode search. Please, try again.");
 		});
+	},
+
+	onKeyDown : function(evt){
+		if(evt.nativeEvent.code.toLowerCase() == "enter" || evt.nativeEvent.code.toLowerCase() == "numpadenter"){
+			this.performZipSearch();
+		}
 	},
 
 
@@ -82,7 +89,7 @@ var FooterComponent = React.createClass({
 						{(this.state.loading) ? "Updating..." : DateHelper.getFooterDate(this.state.lastUpdated)}
 					</div>
 					<div className="add-compare">
-						<input type="text" ref="input" placeholder="Insert your zipcode here..." />
+						<input type="text" ref="input" onKeyDown={this.onKeyDown} placeholder="Insert your zipcode here..." />
 						{ !this.state.loadingZipcode ? 
 							<a className="search" ref="searchbtn" onClick={this.performZipSearch}>
 								<img src="public/images/search-icon.svg"/>

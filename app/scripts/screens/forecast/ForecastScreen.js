@@ -17,7 +17,7 @@ var ForecastScreen = React.createClass({
 		return {
 			comparing:(this.props.params.comparingCityName && this.props.params.comparingLatLng),
 			norfolkData : this.props.norfolkData,
-      comparingData : null,
+      comparingData : this.props.comparingData,
       loadingComparing : false,
       comparingCityName : (this.props.params.comparingCityName) ? this.decryptString(this.props.params.comparingCityName) : null,
       comparingLatLng : this.props.params.comparingLatLng
@@ -26,7 +26,7 @@ var ForecastScreen = React.createClass({
 
   componentWillReceiveProps: function(nextProps) {
     this.setState({
-      comparing : ((this.props.params.comparingCityName != null) && (this.props.params.comparingLatLng != null)),
+      comparing : ((nextProps.params.comparingCityName != null) && (nextProps.params.comparingLatLng != null)),
       norfolkData : nextProps.norfolkData,
       comparingData : nextProps.comparingData,
       comparingCityName : (nextProps.params.comparingCityName) ? this.decryptString(nextProps.params.comparingCityName) : null,
@@ -41,7 +41,9 @@ var ForecastScreen = React.createClass({
   },
 
   componentDidUpdate: function(prevProps, prevState) {
-    if(this.state.comparingLatLng != prevState.comparingLatLng && this.state.comparingLatLng){
+    if((this.state.comparingLatLng != prevState.comparingLatLng && this.state.comparingLatLng) || (this.state.comparingCityName != prevState.comparingCityName && this.state.comparingCityName))
+    {
+      this.setState({comparginData : null, comparing : false});
       this.loadComparingData();
     }
 
@@ -49,6 +51,10 @@ var ForecastScreen = React.createClass({
     if(this.state.loadingComparing == false && this.state.comparingData != prevState.comparingData && this.state.comparingData != null){
       this.refs.norfolkList.alignToIndex(0,true);
       this.refs.norfolkList.forceCloseCard(0);
+
+      if(this.refs.comparingList)
+        this.refs.comparingList.forceCloseCard(0);
+
     }
   },
 
@@ -60,8 +66,8 @@ var ForecastScreen = React.createClass({
 
     var self = this;
     ForecastLoaderHelper.loadComparsionData(this.state.comparingLatLng).then(function(result){
+      window.MainTemplate.updateComparingData();
       self.setState({
-        comparingData : Globals.COMPARING_DATA,
         comparing : true,
         loadingComparing:false
       });
@@ -108,7 +114,7 @@ var ForecastScreen = React.createClass({
   render : function(){
     return (
     	<div className="section-container">
-      	  <WeatherListComponent data={this.state.norfolkData} title="Norfolk, VA" ref="norfolkList" onOpenCard={this.onOpenCard} onChangePos={this.onChangePos} onAlignToIndex={this.onAlignToIndex} delayed={true} retracted={this.state.comparing && (this.state.comparingData != null)} />
+      	  <WeatherListComponent data={this.state.norfolkData} title="Norfolk, VA" ref="norfolkList" onOpenCard={this.onOpenCard} onChangePos={this.onChangePos} onAlignToIndex={this.onAlignToIndex} delayed={true} retracted={this.state.comparing} />
         {this.state.comparing && this.state.comparingData ?
           <WeatherListComponent data={this.state.comparingData} title={this.state.comparingCityName} onOpenCard={this.onOpenCard} onChangePos={this.onChangePos} onAlignToIndex={this.onAlignToIndex} ref="comparingList" delayed={false} />
         : null

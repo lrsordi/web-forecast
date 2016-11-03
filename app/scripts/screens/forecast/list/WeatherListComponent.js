@@ -90,13 +90,13 @@ var WeatherListComponent = React.createClass({
 		this.$listContent.width(this.state.data.daily.data.length * 430);
 		this.$cards = this.$listContent.find(".card-item");
 
-		TweenMax.staggerFrom(this.$cards, 0.6, {y : 0, opacity:0, z : -500, ease : Quint.easeOut, delay:(this.props.delayed ? 1 : 0)}, 0.3);
-		TweenMax.staggerFromTo(this.$cards, 1, {rotationY : 45},{rotationY:0, ease : Back.easeOut, delay:(this.props.delayed ? 1 : 0), overwrite:false}, 0.3);
+		TweenMax.staggerFrom(this.$cards, 0.6, {y : 0, opacity:0, z : -500, ease : Quint.easeOut, delay:1}, 0.3);
+		TweenMax.staggerFromTo(this.$cards, 1, {rotationY : 45},{rotationY:0, ease : Back.easeOut, delay:1, overwrite:false}, 0.3);
 
 		this.alignToIndex(0,false);
 
 		this.titleSplitText = new SplitText(ReactDOM.findDOMNode(this.refs.title),{type : "chars", position : "relative"});
-		TweenMax.staggerFromTo(this.titleSplitText.chars, 1, {y : 10, opacity : 0}, {y : 0, opacity : 1, ease : Quint.easeInOut, delay:(this.props.delayed ? 1 : 0)}, 0.02);
+		TweenMax.staggerFromTo(this.titleSplitText.chars, 1, {y : 10, opacity : 0}, {y : 0, opacity : 1, ease : Quint.easeInOut, delay:1}, 0.02);
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
@@ -111,14 +111,8 @@ var WeatherListComponent = React.createClass({
 
 	renderCards : function(){	
 		var self = this;
-		var hData = {};
+		var hData = self.state.data.hourly.data.slice(0,10);
 		return this.state.data.daily.data.map(function(item,index){
-			if(index == 0){
-				hData = self.state.data.hourly.data.splice(0,10);
-			}else{
-				hData = [];
-			}
-
 			return <WeatherCardComponent index={index} ref={"card"+index} hourlyEnabled={index <= 0} retracted={self.state.retracted} data={item} hourlyData={hData} key={'weahtercard'+index.toString()}/>
 		});
 	},

@@ -69,6 +69,13 @@ var WeatherCardComponent = React.createClass({
 		if((this.state.enabled && !prevState.enabled)||(!this.state.enabled && prevState.enabled)){
 			TweenMax.to(this.$el, 0.5, {opacity:((!this.state.enabled)?0.3:1), ease : Linear.easeNone, overwrite:false});
 		}
+
+
+		if(this.state.retracted){
+			TweenMax.to(this.$el, 1, {height : 230, ease : Quint.easeInOut});
+		}else if(!this.state.retracted){
+			TweenMax.to(this.$el, 1, {height : 330, ease : Quint.easeInOut});
+		}
 	},
 
 	setBackSide : function(value){
@@ -81,12 +88,12 @@ var WeatherCardComponent = React.createClass({
 		this.setState({
 			data : nextProps.data,
 			index : nextProps.index,
+			hourlyData : nextProps.hourlyData,
 			retracted : nextProps.retracted
 		});
 	},
 
 	renderHourly : function(){
-
 		return this.state.hourlyData.map(function(item,index){
 			return <div className="line-hourly" key={"hourlydata"+index}>
 						<div className="column-hour">{DateHelper.getAMPMHour(item.time)}</div>
@@ -102,7 +109,7 @@ var WeatherCardComponent = React.createClass({
 	      'card-item': true,
 	      'retracted': this.state.retracted });
 		return (
-			<div className={classes} ref="card">
+			<div className="card-item" ref="card">
 				{ !this.state.backside ?
 					<div className="front-side">
 						<div className="line-date">

@@ -716,7 +716,7 @@ html, body {
         width: 250px; }
         #forecast-wrapper footer div.footer-content div.add-compare input {
           -webkit-appearance: none;
-          background: rgba(0, 0, 0, 0.3);
+          background: rgba(0, 0, 0, 0.65);
           display: block;
           float: left;
           padding: 10px;
@@ -728,7 +728,7 @@ html, body {
           color: #ffffff;
           display: block;
           float: left;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.6);
           width: 250px; }
         #forecast-wrapper footer div.footer-content div.add-compare a.search {
           position: absolute;
@@ -851,9 +851,7 @@ html, body {
           overflow: hidden;
           -webkit-transform: perspective(1500) translate3d(0px, 0px, 0.1px);
                   transform: perspective(1500) translate3d(0px, 0px, 0.1px);
-          box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
-          -webkit-transition: height 0.3s ease-in-out;
-          transition: height 0.3s ease-in-out; }
+          box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2); }
           #forecast-wrapper div.section-container div.weather-list div.cards-container div.card-item:first-child {
             /* FF3.6-15 */
             background: -webkit-linear-gradient(bottom right, rgba(22, 22, 109, 0.7) 20%, rgba(255, 255, 255, 0.62) 100%);

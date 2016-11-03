@@ -11,7 +11,6 @@ var ForecastLoaderHelper = {
 
 		$.get({
 			url : "https://api.darksky.net/forecast/"+this.SECRET+"/"+this.NORFOLK_LAT_LNG + "?lang=en&exclude=currently,minutely,alerts,flags",
-			jsonp: "callback",
 			dataType: "jsonp",
 			// Work with the response
 		    success: function( response ) {
@@ -34,7 +33,6 @@ var ForecastLoaderHelper = {
 
 		$.get({
 			url : "https://api.darksky.net/forecast/"+this.SECRET+"/"+latlng + "?lang=en&exclude=currently,minutely,alerts,flags",
-			jsonp: "callback",
 			dataType: "jsonp",
 			// Work with the response
 		    success: function( response ) {
@@ -103,6 +101,8 @@ var ForecastLoaderHelper = {
 		}
 
 		var str = strcity + "," + strstate;
+		if(strcity == "") str = strstate;
+
 		return StringsHelper.encodeString(str);
 	},
 }
