@@ -101,6 +101,7 @@ var MainTemplate = React.createClass({
   render : function(){
     return (
       <div id="forecast-wrapper">
+        <div className="background-transition" />
         <HeaderComponent />
         <section id="forecast-screen" ref='forecast-screen'>
           {React.cloneElement(this.props.children, {norfolkData: this.state.norfolkData, comparingData : this.state.comparingData})}

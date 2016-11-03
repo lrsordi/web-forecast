@@ -31,7 +31,7 @@ var FooterComponent = React.createClass({
 	},
 
 	performZipSearch : function(){
-		if(this.state.loadingZipcode) return;
+		if(this.state.loadingZipcode || this.state.loading) return;
 		var zipcode = $(ReactDOM.findDOMNode(this.refs.input)).val();
 		if(zipcode.length == 0){
 			alert("Please fill in your zipcode.");
@@ -67,14 +67,14 @@ var FooterComponent = React.createClass({
 	},
 
 	onKeyDown : function(evt){
-		if(evt.nativeEvent.code.toLowerCase() == "enter" || evt.nativeEvent.code.toLowerCase() == "numpadenter"){
+		if(evt.key.toLowerCase() == "enter" || evt.key.toLowerCase() == "numpadenter"){
 			this.performZipSearch();
 		}
 	},
 
 
 	requestUpdate : function(){
-		if(this.state.loading) return;
+		if(this.state.loading || this.state.loadingZipcode) return;
 
 		this.props.onRequestUpdate();
 	},

@@ -118,3 +118,113 @@ footer {
     } 
   }
 }
+
+
+
+// ==========================================================================
+// Media query | Phone
+// ==========================================================================
+@media screen and (max-width:1200px) {
+  div.last-updated{
+    width: 25% !important;
+    bottom: 10px !important;
+  }
+}
+
+// ==========================================================================
+// Media query | Phone
+// ==========================================================================
+@media screen and (max-width:600px) {
+
+footer {
+  height : auto;
+  background : rgba(0,0,0,0.5);
+
+  div.footer-content {
+    padding : 10px;
+    display : block;
+    height : 60px;
+    width : 100%;
+    padding-left : 10px;
+    padding-right : 10px;
+
+
+    div.last-updated {
+        width : 50% !important;
+        font-size : 15px * 0.7;
+        bottom : 0px;
+        position : relative;
+        display : none;
+        strong {
+          font-size :  18px * 0.7;
+        }
+    }
+
+
+
+    div.add-compare {
+      margin : 0 auto;
+      position : relative;
+      display : block;
+      float : left;
+      left : 0px;
+      transform : none;
+      top : 0px;
+      width : calc(100% - 50px);
+
+      input {
+        display : block;
+        float : left;
+        position : relative;
+        width : 100%;
+      }
+
+      a.search {
+        position : absolute;
+        right : 0px;
+        -webkit-appearance:none;
+        display : block;
+        width : 50px;
+        height : 100%;
+        border : none;
+        background : none;
+        outline : none;
+        cursor : pointer;
+
+        img {
+          width : 20px;
+          height : 20px;
+          top : 10px;
+          left : 15px;
+          position : relative;
+          transition : transform 0.3s ease-in-out;
+        }
+
+        &:hover{
+          img{
+            transform : rotate(15deg);
+          }
+        }
+      }
+    }
+
+    a.reload {
+      font-size : 0px;
+      width : 50px;
+      height : 50px;
+
+      img {
+        height: 30px;
+        margin-left : 15px;
+        margin-top : 2px;
+      }
+
+      &:hover{
+        padding-right : 5px;
+        img{ transform : rotate(180deg);}
+      }
+    } 
+  }
+}
+
+}

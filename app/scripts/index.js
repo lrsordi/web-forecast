@@ -6,6 +6,7 @@ var Globals = require('./core/Globals');
 var ForecastLoaderHelper = require('./helpers/ForecastLoaderHelper');
 require('gsap');
 require('./vendors/Skycons');
+var MobileDetect = require('mobile-detect');
 
 
 TweenMax.ticker.fps(60);
@@ -23,6 +24,15 @@ var Index = function(){
 
 
 	window.Globals = Globals;
+	  window.mobileDetect = new MobileDetect(window.navigator.userAgent);
+	  window.mobileDetect.touch = function(){
+	    var isTouchDevice = 'ontouchstart' in document.documentElement;
+	    return (isTouchDevice || window.mobileDetect.mobile() || window.mobileDetect.tablet());
+		};
+	if(window.mobileDetect.mobile() && !window.mobileDetect.tablet()){
+		Globals.CARD_WIDTH = 280;
+		Globals.CARD_SPACE = 5;
+	}
 	Globals.SKYCONS = new Skycons({"color": "white","resizeClear": true});
 
 	function initReferences(){
@@ -48,6 +58,19 @@ var Index = function(){
 		for(var i = 1; i <= 5; i++){
 			queue.loadFile({src : "public/images/intro/bg"+i+".jpg", type:createjs.AbstractLoader.IMAGE, id : "imageintro"+i, index : i});
 		}
+
+
+		queue.loadFile({src : "public/images/weather-bg/clear-day.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/clear-night.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/cloudy.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/fog.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/partly-cloudy-day.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/partly-cloudy-night.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/rain.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/sleet.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/snow.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/sun.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/wind.jpg", type:createjs.AbstractLoader.IMAGE});
 
 		queue.load();
 	}

@@ -13,14 +13,20 @@ var debug = require('debug');
 var http = require('http');
 var port = normalizePort(process.env.PORT || '3000');
 var server = http.createServer(app);
+var html = require('html');
+var cons = require('consolidate');
 
 
 app.use('/public', express.static(__dirname + '/app/public'));
+app.engine('html', cons.underscore);
+// set .html as the default extension
+app.set('view engine', 'html');
 
 
 
 app.get('*', function(req, res, next) {
-  res.sendFile(__dirname + "/app/index.html");
+  var fullUrl = req.protocol + '://' + req.get('host');
+  res.render(__dirname + "/app/index.html", {root_url : fullUrl});
   //res.status(404).send('Sorry cant find that!');
 });
 

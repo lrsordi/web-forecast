@@ -64,7 +64,7 @@ div.card-item {
 
 	div.back-side {
 		overflow-y : scroll;
-
+		-webkit-overflow-scrolling: touch;
 	}
 	div.line-hourly {
 		width : 100%;

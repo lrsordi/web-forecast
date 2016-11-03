@@ -12,7 +12,8 @@ var WeatherListComponent = React.createClass({
 	$iniMouseX : null,
 	$currPosX : null,
 	titleSplitText : null,
-
+	$lastMouseX : null,
+	$lastTarget : null,
 	$iniTime : null,
 
 
@@ -24,12 +25,17 @@ var WeatherListComponent = React.createClass({
 			cardOpened : -1,
 			itemAligned : 0,
 			grabbing : false,
+			grabbingMobile : false,
 		};
 	},
 
 	externalPositeElements : function(pos){
 		this.$currPosX = pos;
 		TweenMax.to(this.$listContent, 0.5, {x : this.$currPosX, ease : Quint.easeOut, onUpdate:this.updatePos, onUpdateParams:[true]});
+	},
+
+	componentWillMount: function() {
+		
 	},
 
 	componentWillReceiveProps: function(nextProps) {
@@ -81,19 +87,33 @@ var WeatherListComponent = React.createClass({
 		});
 
 		if(doCall){
+			this.changeBackground(index);
 			this.props.onAlignToIndex(this,index);
 		}
 	},
 
+	changeBackground : function(index){
+		var img = "url('public/images/weather-bg/"+this.state.data.daily.data[index].icon+".jpg')";
+
+		$(".background-transition").css("background-image", img);
+		TweenMax.fromTo($(".background-transition"), 1, {opacity:0},{opacity:1, onComplete:this.setBg});
+	},
+
+	setBg : function(){
+		$("#forecast-wrapper").css("background-image", $(".background-transition").css("background-image"));
+		TweenMax.set($(".background-transition"),{opacity:0});
+	},
+
 	componentDidMount: function() {
 		this.$listContent = $(ReactDOM.findDOMNode(this.refs.listContent));
-		this.$listContent.width(this.state.data.daily.data.length * 430);
+		this.$listContent.width(this.state.data.daily.data.length * (Globals.CARD_WIDTH + Globals.CARD_SPACE));
 		this.$cards = this.$listContent.find(".card-item");
 
 		TweenMax.staggerFrom(this.$cards, 0.6, {y : 0, opacity:0, z : -500, ease : Quint.easeOut, delay:1}, 0.3);
 		TweenMax.staggerFromTo(this.$cards, 1, {rotationY : 45},{rotationY:0, ease : Back.easeOut, delay:1, overwrite:false}, 0.3);
 
-		this.alignToIndex(0,false);
+		this.alignToIndex(0,true,true);
+		this.changeBackground(0);
 
 		this.titleSplitText = new SplitText(ReactDOM.findDOMNode(this.refs.title),{type : "chars", position : "relative"});
 		TweenMax.staggerFromTo(this.titleSplitText.chars, 1, {y : 10, opacity : 0}, {y : 0, opacity : 1, ease : Quint.easeInOut, delay:1}, 0.02);
@@ -101,11 +121,20 @@ var WeatherListComponent = React.createClass({
 
 	componentDidUpdate: function(prevProps, prevState) {
 		if (this.state.grabbing && !prevState.grabbing) {
-	      document.addEventListener('mousemove', this.onMouseMove)
-	      document.addEventListener('mouseup', this.onMouseUp)
+			if(window.mobileDetect.mobile()){
+				document.addEventListener('touchmove', this.onMouseMove);
+		     	document.addEventListener('touchend', this.onMouseUp);
+			}
+			else{
+				document.addEventListener('mousemove', this.onMouseMove);
+		     	document.addEventListener('mouseup', this.onMouseUp);				
+			}
+	      
 	    } else if (!this.state.grabbing && prevState.grabbing) {
 	      document.removeEventListener('mousemove', this.onMouseMove)
 	      document.removeEventListener('mouseup', this.onMouseUp)
+	      document.removeEventListener('touchmove', this.onMouseMove)
+	      document.removeEventListener('touchend', this.onMouseUp)	      
 	    }
 	},
 
@@ -150,7 +179,7 @@ var WeatherListComponent = React.createClass({
 		return (
 			<div className={classesList}>
 				<h2 ref="title">{this.state.title}</h2>
-				<div className={classes} ref="listContent" onMouseDown={this.onMouseDown}>
+				<div className={classes} ref="listContent" onMouseDown={this.onMouseDown} onTouchStart={this.onMouseDown}>
 				{ this.renderCards() }
 				</div>
 			</div>
@@ -160,11 +189,27 @@ var WeatherListComponent = React.createClass({
 
 
 	onMouseDown : function(evt){
-		if (evt.button !== 0) return;
+		//if (evt.button !== 0) return;
 		TweenMax.killTweensOf(this.$listContent);
-		this.$iniMouseX = evt.clientX;
+		var b = false;
+
+		if(evt.clientX == undefined){
+			this.$iniMouseX = evt.touches[0].clientX;
+
+			if($(evt.target).parents(".back-side").length){
+				evt.stopPropagation();
+				return;
+			}
+
+			b = true;
+		}else{
+			this.$iniMouseX = evt.clientX;
+		}
+
+		this.$lastMouseX = this.$iniMouseX;
 		this.$iniPosX = this.$currPosX;
 
+		this.$lastTarget = $(evt.toElement);
 		this.setState({
 			grabbing : true
 		});
@@ -181,11 +226,23 @@ var WeatherListComponent = React.createClass({
 
 	    var difTime = new Date().getTime() - this.$iniTime;
 	    var self = this;
+	    var currX = e.clientX;
 
-	    if(Math.abs(e.clientX - this.$iniMouseX) < 10 && difTime < 1000){
-	    	if($(e.toElement).parents("div.card-item").length){
+	    if(currX == undefined && !e.touches[0]){
+	    	currX = this.$lastMouseX;
+	    }
 
-	    		var cardIndex = $(e.toElement).parents("div.card-item").index();
+	    var zel = $(e.toElement);
+
+	    if(e.toElement == undefined){
+	    	zel = $(e.target);
+	    }
+
+
+	    if(Math.abs(currX - this.$iniMouseX) < 10 && difTime < 1000){
+	    	if(zel.parents("div.card-item").length){
+
+	    		var cardIndex = zel.parents("div.card-item").index();
 	    		if(self.state.itemAligned == cardIndex)
 	    		{
 	    			this.openCard(cardIndex,true);
@@ -208,7 +265,15 @@ var WeatherListComponent = React.createClass({
 
 	onMouseMove: function (evt) {
 	    if (!this.state.grabbing) return;
-	    this.$currPosX = this.$iniPosX+(evt.clientX-this.$iniMouseX);
+	    var currX = evt.clientX;
+
+	    if(currX == undefined){
+	    	currX = evt.touches[0].clientX;
+	    }
+
+	    this.$lastMouseX = currX;
+	    
+	    this.$currPosX = this.$iniPosX+(currX-this.$iniMouseX);
 
 	    TweenMax.to(this.$listContent, 1, {x : this.$currPosX, ease : Quint.easeOut, onUpdate:this.updatePos});
 	    evt.stopPropagation()

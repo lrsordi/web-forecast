@@ -4,9 +4,25 @@
   min-height : 100%;
   float : left;
 
-  background : url('../images/intro/bg3.jpg') center center no-repeat;
+  background-color : #000000;
   background-size : cover;
   background-attachment : fixed;
+  background-position : center center;
+
+  div.background-transition {
+    position : absolute;
+    top : 0px;
+    left : 0px;
+    display : block;
+    float : left;
+    width : 100%;
+    height : 100%;
+
+    background-color : #000000;
+    background-size : cover;
+    background-position : center center;
+    background-attachment : fixed;
+  }
 
 
   #forecast-screen {
@@ -14,11 +30,10 @@
   	width : 100%;
   	min-height : 100%;
   	position : relative;
-  	padding-bottom : 40vh;
+    padding-bottom : 200px;
   }
 
-  @import "header.scss";
-  @import "footer.scss";
+
 
 
 
@@ -30,6 +45,7 @@
   	float : left;
   	top : 200px;
   	position : relative;
+    padding-bottom : 200px;
 
   	div.loading-layer {
   		position : fixed;
@@ -97,3 +113,48 @@
 	  }
   }
 }
+
+
+
+@import "header.scss";
+@import "footer.scss";
+
+
+// ==========================================================================
+// Media query | Phone
+// ==========================================================================
+@media screen and (max-width:600px) {
+
+  #forecast-wrapper {
+
+    #forecast-screen {
+      padding-bottom : 200px * 0.7;
+    }
+
+    div.section-container {
+      padding-bottom : 200px * 0.7;
+      top : 200px * 0.5;
+      
+      div.weather-list {
+        padding-bottom : 50px * 0.7;
+        margin-top : 30px * 0.7;
+        &:first-child{
+          margin-top : 0px;
+        }        
+
+        h2 {
+          font-size : 10vw;
+        }
+
+        div.cards-container {
+            @import "card-mobile.scss";
+        }
+      }
+    }
+  }
+}
+
+
+
+
+

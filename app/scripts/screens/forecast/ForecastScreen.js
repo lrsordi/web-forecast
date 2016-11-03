@@ -49,11 +49,12 @@ var ForecastScreen = React.createClass({
 
 
     if(this.state.loadingComparing == false && this.state.comparingData != prevState.comparingData && this.state.comparingData != null){
-      this.refs.norfolkList.alignToIndex(0,true);
+      //this.refs.norfolkList.alignToIndex(0,true);
       this.refs.norfolkList.forceCloseCard(0);
 
-      if(this.refs.comparingList)
+      if(this.refs.comparingList){
         this.refs.comparingList.forceCloseCard(0);
+      }
 
     }
   },
@@ -85,7 +86,8 @@ var ForecastScreen = React.createClass({
         this.refs.comparingList.externalPositeElements(pos);
       }
     }else{
-      this.refs.norfolkList.externalPositeElements(pos);
+      if(this.refs.norfolkList)
+        this.refs.norfolkList.externalPositeElements(pos);
     }
   },
 
@@ -95,7 +97,8 @@ var ForecastScreen = React.createClass({
         this.refs.comparingList.alignToIndex(pos,true);
       }
     }else{
-      this.refs.norfolkList.alignToIndex(pos,true);
+      if(this.refs.norfolkList)
+        this.refs.norfolkList.alignToIndex(pos,true);
     }
   },  
 

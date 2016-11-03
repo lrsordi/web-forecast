@@ -72,9 +72,9 @@ var WeatherCardComponent = React.createClass({
 
 
 		if(this.state.retracted){
-			TweenMax.to(this.$el, 1, {height : 230, ease : Quint.easeInOut});
+			TweenMax.to(this.$el, 1, {height : (window.mobileDetect.mobile() && !window.mobileDetect.tablet()) ? 148 : 230, ease : Quint.easeInOut});
 		}else if(!this.state.retracted){
-			TweenMax.to(this.$el, 1, {height : 330, ease : Quint.easeInOut});
+			TweenMax.to(this.$el, 1, {height : (window.mobileDetect.mobile() && !window.mobileDetect.tablet()) ? 231 : 330, ease : Quint.easeInOut});
 		}
 	},
 
@@ -105,6 +105,14 @@ var WeatherCardComponent = React.createClass({
 	},
 
 	render: function() {
+		var w = 128;
+		var h = 128;
+
+		if(window.mobileDetect.mobile() && !window.mobileDetect.tablet()){
+			w = 117;
+			h = 98;
+		}
+
 		var classes = classNames({
 	      'card-item': true,
 	      'retracted': this.state.retracted });
@@ -117,7 +125,7 @@ var WeatherCardComponent = React.createClass({
 						</div>
 						<div className="line-temperature">
 							<div className="column-icon">
-								<canvas id={"icon"+this.state.index.toString()} width="128" height="128" ref="icon"></canvas>
+								<canvas id={"icon"+this.state.index.toString()} width={w} height={h} ref="icon"></canvas>
 							</div>
 							<div className="column-degrees">
 								<strong className="max"><img src="public/images/arrow-up.svg"/>{Math.round(this.state.data.temperatureMax).toString() + "°"}</strong>

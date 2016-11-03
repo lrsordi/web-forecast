@@ -116,3 +116,45 @@
 
 	}
 }
+
+
+
+
+
+
+
+
+// ==========================================================================
+// Media query | Phone
+// ==========================================================================
+@media screen and (max-width:768px) {
+  #intro-screen {
+  	div.center-content {
+  		width : 100%;
+  		margin-left : 0px;
+  		left : 0px;
+  		height : auto;
+  		padding-left : 10px;
+  		padding-right : 10px;
+
+  		h2 {
+  			font-size : 8vw;
+  		}
+
+  		p{
+  			margin : 0 !important;
+  			width : 100%;
+  			margin-top : 15px !important;
+  			position : relative;
+  			font-size : 4vw;
+  		}
+
+  		a.proceed-btn {
+  			position : relative;
+  			margin-top : 40px;
+  		}
+  	}
+
+  }
+}
+
