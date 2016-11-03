@@ -56,21 +56,21 @@ var Index = function(){
 		queue.on("error", handleFileError);
 		queue.on("complete", handleQueueComplete);
 		for(var i = 1; i <= 5; i++){
-			queue.loadFile({src : "public/images/intro/bg"+i+".jpg", type:createjs.AbstractLoader.IMAGE, id : "imageintro"+i, index : i});
+			queue.loadFile({src : "public/images/intro/"+((window.mobileDetect.mobile() && !window.mobileDetect.tablet()) ? "mobile/" : "")+"bg"+i+".jpg", type:createjs.AbstractLoader.IMAGE, id : "imageintro"+i, index : i});
 		}
 
 
-		queue.loadFile({src : "public/images/weather-bg/clear-day.jpg", type:createjs.AbstractLoader.IMAGE});
-		queue.loadFile({src : "public/images/weather-bg/clear-night.jpg", type:createjs.AbstractLoader.IMAGE});
-		queue.loadFile({src : "public/images/weather-bg/cloudy.jpg", type:createjs.AbstractLoader.IMAGE});
-		queue.loadFile({src : "public/images/weather-bg/fog.jpg", type:createjs.AbstractLoader.IMAGE});
-		queue.loadFile({src : "public/images/weather-bg/partly-cloudy-day.jpg", type:createjs.AbstractLoader.IMAGE});
-		queue.loadFile({src : "public/images/weather-bg/partly-cloudy-night.jpg", type:createjs.AbstractLoader.IMAGE});
-		queue.loadFile({src : "public/images/weather-bg/rain.jpg", type:createjs.AbstractLoader.IMAGE});
-		queue.loadFile({src : "public/images/weather-bg/sleet.jpg", type:createjs.AbstractLoader.IMAGE});
-		queue.loadFile({src : "public/images/weather-bg/snow.jpg", type:createjs.AbstractLoader.IMAGE});
-		queue.loadFile({src : "public/images/weather-bg/sun.jpg", type:createjs.AbstractLoader.IMAGE});
-		queue.loadFile({src : "public/images/weather-bg/wind.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/"+((window.mobileDetect.mobile() && !window.mobileDetect.tablet()) ? "mobile/" : "")+"clear-day.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/"+((window.mobileDetect.mobile() && !window.mobileDetect.tablet()) ? "mobile/" : "")+"clear-night.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/"+((window.mobileDetect.mobile() && !window.mobileDetect.tablet()) ? "mobile/" : "")+"cloudy.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/"+((window.mobileDetect.mobile() && !window.mobileDetect.tablet()) ? "mobile/" : "")+"fog.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/"+((window.mobileDetect.mobile() && !window.mobileDetect.tablet()) ? "mobile/" : "")+"partly-cloudy-day.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/"+((window.mobileDetect.mobile() && !window.mobileDetect.tablet()) ? "mobile/" : "")+"partly-cloudy-night.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/"+((window.mobileDetect.mobile() && !window.mobileDetect.tablet()) ? "mobile/" : "")+"rain.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/"+((window.mobileDetect.mobile() && !window.mobileDetect.tablet()) ? "mobile/" : "")+"sleet.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/"+((window.mobileDetect.mobile() && !window.mobileDetect.tablet()) ? "mobile/" : "")+"snow.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/"+((window.mobileDetect.mobile() && !window.mobileDetect.tablet()) ? "mobile/" : "")+"sun.jpg", type:createjs.AbstractLoader.IMAGE});
+		queue.loadFile({src : "public/images/weather-bg/"+((window.mobileDetect.mobile() && !window.mobileDetect.tablet()) ? "mobile/" : "")+"wind.jpg", type:createjs.AbstractLoader.IMAGE});
 
 		queue.load();
 	}

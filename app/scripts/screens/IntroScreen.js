@@ -83,7 +83,7 @@ var IntroScreen = React.createClass({
 	      'logo-container': true,
 	      'inverted': (this.state.background == 3) });
 	    return (
-	      <div id="intro-screen" ref='intro-screen' style={{'background' : 'url(\'public/images/intro/bg'+this.state.background+'.jpg\') 0 0 no-repeat', 'backgroundSize' : 'cover'}}>
+	      <div id="intro-screen" ref='intro-screen' style={{'background' : 'url(\'public/images/intro/'+((window.mobileDetect.mobile() && !window.mobileDetect.tablet()) ? 'mobile/' : '')+'bg'+this.state.background+'.jpg\') 0 0 no-repeat', 'backgroundSize' : 'cover'}}>
 	      	<div className='black-deg'>
 		      	<div className='center-content'>
 		      	  <div className={classes}>

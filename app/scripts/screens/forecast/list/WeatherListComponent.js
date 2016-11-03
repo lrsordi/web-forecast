@@ -93,7 +93,7 @@ var WeatherListComponent = React.createClass({
 	},
 
 	changeBackground : function(index){
-		var img = "url('public/images/weather-bg/"+this.state.data.daily.data[index].icon+".jpg')";
+		var img = "url('public/images/weather-bg/"+((window.mobileDetect.mobile() && !window.mobileDetect.tablet()) ? "mobile/" : "")+this.state.data.daily.data[index].icon+".jpg')";
 
 		$(".background-transition").css("background-image", img);
 		TweenMax.fromTo($(".background-transition"), 1, {opacity:0},{opacity:1, onComplete:this.setBg});
